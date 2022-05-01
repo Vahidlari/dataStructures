@@ -1,7 +1,6 @@
 #include "insertionSort.hpp"
 
 template<typename Ttype> 
-inline
 void CInsertionSort<Ttype>::swap(Ttype inArray[], int x, int y){
     Ttype tmp = inArray[x];
     inArray[x] = inArray[y];
@@ -9,7 +8,6 @@ void CInsertionSort<Ttype>::swap(Ttype inArray[], int x, int y){
 }
 
 template<typename Ttype>
-inline
 void CInsertionSort<Ttype>::sort(Ttype inArray[], int arraySize){
     for(int i = 0; i < arraySize; i++){
         for(int j = i; j > 0; j--){

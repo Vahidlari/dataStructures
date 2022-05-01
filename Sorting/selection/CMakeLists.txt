@@ -1,2 +1,2 @@
-add_library(selectionSort selectionSort.cpp selectionSort.hpp)
+add_library(selectionSort selectionSort.cpp)
 

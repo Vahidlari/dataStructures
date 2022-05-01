@@ -2,13 +2,11 @@
 #include <iostream>
 
 template<typename Ttype>
-inline
 void CSelectionSort<Ttype>::sayHello(){
     std::cout << "Hello!" << std::endl;
 }
 
 template<typename Ttype> 
-inline
 void CSelectionSort<Ttype>::swap(Ttype inArray[], int x, int y){
     Ttype tmp = inArray[x];
     inArray[x] = inArray[y];
@@ -16,7 +14,6 @@ void CSelectionSort<Ttype>::swap(Ttype inArray[], int x, int y){
 }
 
 template<typename Ttype>
-inline
 void CSelectionSort<Ttype>::sort(Ttype inArray[], int arraySize){
     for(int i = 0; i < arraySize; i++){
         int min = i;

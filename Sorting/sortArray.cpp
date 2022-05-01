@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <iostream>
 
-#include "insertion/insertionSort.hpp"
-#include "selection/selectionSort.hpp"
+#include <insertionSort.hpp>
+#include <selectionSort.hpp>
 
 using namespace std;
 
