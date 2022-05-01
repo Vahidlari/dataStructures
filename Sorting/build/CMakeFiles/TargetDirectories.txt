@@ -1,9 +1,0 @@
-/Users/vahid/MyProjects/DataStructuresAndAlgorithms/Sorting/build/CMakeFiles/sort.dir
-/Users/vahid/MyProjects/DataStructuresAndAlgorithms/Sorting/build/CMakeFiles/edit_cache.dir
-/Users/vahid/MyProjects/DataStructuresAndAlgorithms/Sorting/build/CMakeFiles/rebuild_cache.dir
-/Users/vahid/MyProjects/DataStructuresAndAlgorithms/Sorting/build/insertion/CMakeFiles/insertionSort.dir
-/Users/vahid/MyProjects/DataStructuresAndAlgorithms/Sorting/build/insertion/CMakeFiles/edit_cache.dir
-/Users/vahid/MyProjects/DataStructuresAndAlgorithms/Sorting/build/insertion/CMakeFiles/rebuild_cache.dir
-/Users/vahid/MyProjects/DataStructuresAndAlgorithms/Sorting/build/selection/CMakeFiles/selectionSort.dir
-/Users/vahid/MyProjects/DataStructuresAndAlgorithms/Sorting/build/selection/CMakeFiles/edit_cache.dir
-/Users/vahid/MyProjects/DataStructuresAndAlgorithms/Sorting/build/selection/CMakeFiles/rebuild_cache.dir

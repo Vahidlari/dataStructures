@@ -1,2 +1,0 @@
-/usr/bin/ar qc libinsertionSort.a CMakeFiles/insertionSort.dir/insertionSort.cpp.o
-/usr/bin/ranlib libinsertionSort.a
