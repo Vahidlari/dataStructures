@@ -11,7 +11,7 @@ add_executable(${PROJECT_NAME} sortArray.cpp)
 add_subdirectory(insertion)
 add_subdirectory(selection)
 
-target_include_directories(${PROJECT_NAME} PUBLIC selection/ insertion/)
+target_include_directories(${PROJECT_NAME} PUBLIC selection/inc insertion/inc)
 
 target_link_directories(${PROJECT_NAME} PUBLIC selection/ insertion/)
 

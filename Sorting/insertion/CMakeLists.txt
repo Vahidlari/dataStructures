@@ -1,2 +1,2 @@
-add_library(insertionSort insertionSort.cpp)
+add_library(insertionSort src/insertionSort.cpp inc/insertionSort.hpp)
 

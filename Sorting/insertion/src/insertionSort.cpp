@@ -1,4 +1,4 @@
-#include "insertionSort.hpp"
+#include "../inc/insertionSort.hpp"
 
 template<typename Ttype> 
 void CInsertionSort<Ttype>::swap(Ttype inArray[], int x, int y){
