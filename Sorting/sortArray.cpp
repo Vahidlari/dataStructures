@@ -1,17 +1,20 @@
 #include <stdio.h>
 #include <iostream>
 
-#include "insertion/inc/insertionSort.hpp"
-#include "selection/inc/selectionSort.hpp"
+#include "insertionSort.hpp"
+#include "selectionSort.hpp"
 
 using namespace std;
 
 template<typename T>
 class CTest{
     public:
-    void sayHello(){
-        std::cout << "Hello!\n";
-    };
+    void sayHello();
+};
+
+template<typename T>
+void CTest<T>::sayHello(){
+    std::cout << "Hello!\n";
 };
 
 template<typename Ttype>
@@ -26,8 +29,8 @@ int main()
 {
     std::cout << "Hello World!" << std::endl;
     CSelectionSort<int> selectionSort;
-    //CTest<int> myTest;
-    //myTest.sayHello();
+    CTest<int> myTest;
+    myTest.sayHello();
     //int a[10] = {8, 9, 2, 4, 1, 5, 3, 0, 6, 7};
     //printArray(a, 10);
     //

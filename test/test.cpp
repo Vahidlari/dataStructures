@@ -1,7 +1,28 @@
-#include <cstdio>
+#include "selection/selectionSort.hpp"
+#include "insertion/insertionSort.hpp"
+#include "shell/shellSort.hpp"
+#include "printArray.hpp" 
+
 int main()
 {
-    char name[100];printf("please input your name:");
-    scanf("%s",name);
-    printf("hello,%s",name);
+    std::cout << "Hello world!\n";
+    CSelectionSort<int> mySelectionSort;
+    CInsertionSort<int> myInsertionSort;
+    CShellSort<int> myShellSort;
+    
+    int a[10] = {8, 9, 2, 4, 1, 5, 3, 0, 6, 7};
+    int b[10] = {8, 9, 2, 4, 1, 5, 3, 0, 6, 7};
+    int c[10] = {8, 9, 2, 4, 1, 5, 3, 0, 6, 7};
+    printArray(a, 10);
+
+    cout << "----- SELECTION SORT ------\n";
+    mySelectionSort.sort(a, 10, true);
+    printArray(a, 10);
+
+    cout << "----- INSERTION SORT ------\n";
+    myInsertionSort.sort(b, 10, true);
+    printArray(b, 10);
+    cout << "----- SHELL SORT ------\n";
+    myShellSort.sort(c, 10, true);
+    printArray(c, 10);
 }
