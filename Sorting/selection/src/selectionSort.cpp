@@ -1,4 +1,4 @@
-#include "selectionSort.hpp"
+#include "../inc/selectionSort.hpp"
 #include <iostream>
 
 template<typename Ttype>
