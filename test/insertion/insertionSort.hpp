@@ -9,7 +9,7 @@ public:
     CInsertionSort(): swapCount(0)
     {
     };
-    void sort(Ttype inArray[], int arraySize, bool print);
+    void sort(Ttype inArray[], int arraySize);
 private:
     void swap(Ttype inArray[], int x, int y);
     int swapCount;
@@ -24,7 +24,7 @@ void CInsertionSort<Ttype>::swap(Ttype inArray[], int x, int y){
 }
 
 template<typename Ttype>
-void CInsertionSort<Ttype>::sort(Ttype inArray[], int arraySize, bool print){
+void CInsertionSort<Ttype>::sort(Ttype inArray[], int arraySize){
     for(int i = 0; i < arraySize; i++){
         for(int j = i; j > 0; j--){
             if(inArray[j] < inArray[j-1]){
@@ -33,12 +33,13 @@ void CInsertionSort<Ttype>::sort(Ttype inArray[], int arraySize, bool print){
                 break;
             }
         }
-        if(print)
+#ifdef PRINT_ENABLED
             printArray(inArray, arraySize);
+#endif
     }
-    if(print){
+#ifdef PRINT_ENABLED
         cout << "number of swaps: " << swapCount << std::endl;
-    }
+#endif
 }
 
 #endif // INSERTIONSORTING_INCLUDED_

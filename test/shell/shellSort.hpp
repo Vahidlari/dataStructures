@@ -9,8 +9,8 @@ public:
     {
 
     };
-    void sort(Ttype inArray[], int arraySize, bool print);
-    void sort(Ttype inArray[], int arraySize, int h, bool print);
+    void sort(Ttype inArray[], int arraySize);
+    void sort(Ttype inArray[], int arraySize, int h);
 private:
     void swap(Ttype inArray[], int x, int y);
     int swapCount;
@@ -25,26 +25,26 @@ void CShellSort<Ttype>::swap(Ttype inArray[], int x, int y){
 }
 
 template<typename Ttype>
-void CShellSort<Ttype>::sort(Ttype inArray[], int arraySize, bool print){
+void CShellSort<Ttype>::sort(Ttype inArray[], int arraySize){
     int h = 1; 
     while(h < arraySize/3){
         h = 3*h + 1;
     }
     while (h >= 1){
-        if(print){
+#ifdef PRINT_ENABLED
             cout << "-------------------------\n";
             cout << "Sorting for h = " << h << "\n";
-        }
-        sort(inArray, arraySize, h, print);
+#endif
+        sort(inArray, arraySize, h);
         h = static_cast<int>(h/3);
     }
-    if(print){
+#ifdef PRINT_ENABLED
         cout << "number of swaps: " << swapCount << std::endl;
-    }
+#endif
 }
 
 template<typename Ttype>
-void CShellSort<Ttype>::sort(Ttype inArray[], int arraySize, int h, bool print){
+void CShellSort<Ttype>::sort(Ttype inArray[], int arraySize, int h){
     cout << "Running\n";
     for(int i = h; i < arraySize; i++){
         for(int j = i; j >= h; j -= h ){
@@ -54,8 +54,9 @@ void CShellSort<Ttype>::sort(Ttype inArray[], int arraySize, int h, bool print){
                 break;
             }
         }
-        if(print)
+#ifdef PRINT_ENABLED
             printArray(inArray, arraySize);
+#endif
     }
 }
 #endif //HASHSORT_INCLUDED_

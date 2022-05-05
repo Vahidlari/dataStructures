@@ -12,9 +12,10 @@ public:
     {
     }
 
-    virtual void sort(int inArray[], int arraySize, bool print) = 0;
+    virtual void sort(int inArray[], int arraySize) = 0;
     static void printArray(int a[], int size);
     static void printArray(int a[], int low, int high);
+    void resetCounter();
 
 protected:
     void swap(int inArray[], int x, int y);
@@ -39,5 +40,8 @@ void CBaseSort::printArray(int a[], int low, int high){
     cout << std::endl;    
 }
 
+void CBaseSort::resetCounter(){
+    swapCount = 0;
+}
 #endif //BASESORT_INCLUDED_
 
