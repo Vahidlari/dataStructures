@@ -10,7 +10,7 @@ public:
 
     };
     void sort(Ttype inArray[], int arraySize);
-    void sort(Ttype inArray[], int arraySize, int h);
+    void hSort(Ttype inArray[], int arraySize, int h);
 private:
     void swap(Ttype inArray[], int x, int y);
     int swapCount;
@@ -35,7 +35,7 @@ void CShellSort<Ttype>::sort(Ttype inArray[], int arraySize){
             cout << "-------------------------\n";
             cout << "Sorting for h = " << h << "\n";
 #endif
-        sort(inArray, arraySize, h);
+        hSort(inArray, arraySize, h);
         h = static_cast<int>(h/3);
     }
 #ifdef PRINT_ENABLED
@@ -44,7 +44,7 @@ void CShellSort<Ttype>::sort(Ttype inArray[], int arraySize){
 }
 
 template<typename Ttype>
-void CShellSort<Ttype>::sort(Ttype inArray[], int arraySize, int h){
+void CShellSort<Ttype>::hSort(Ttype inArray[], int arraySize, int h){
     cout << "Running\n";
     for(int i = h; i < arraySize; i++){
         for(int j = i; j >= h; j -= h ){

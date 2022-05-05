@@ -11,4 +11,6 @@ private:
     void swap(Ttype inArray[], int x, int y);
 };
 
+#include "selectionSort.inl"
+
 #endif //SELECTIONSORTING_INCLUDED_

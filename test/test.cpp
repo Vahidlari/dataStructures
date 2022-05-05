@@ -5,6 +5,7 @@
 #include "quick/quickSort.hpp"
 #include "printArray.hpp" 
 
+#define ARRAY_SIZE 10 
 
 int main()
 {
@@ -16,31 +17,39 @@ int main()
     CMergeSort myMergeSort;
     CQuickSort mySimpleQuickSort(complexity_t::simple);
     CQuickSort myEfficientQuickSort(complexity_t::efficient);
+    CQuickSort my3WayQuickSort(complexity_t::threeWay);
 
-    int a[10] = {8, 9, 2, 4, 1, 5, 3, 0, 6, 7};
-    int b[10], c[10], d[10], e[10], f[10];
-    for (int i  = 0; i < 10; i++){
+    int a[] = {8, 9, 2, 4, 1, 5, 3, 0, 6, 7};
+    int b[ARRAY_SIZE], c[ARRAY_SIZE], d[ARRAY_SIZE], e[ARRAY_SIZE], f[ARRAY_SIZE];
+    for (int i  = 0; i < ARRAY_SIZE; i++){
         b[i] = c[i] = d[i] = e[i] = f[i] = a[i];
     }
-    printArray(a, 10);
+    printArray(a, ARRAY_SIZE);
 
     cout << "----- SELECTION SORT ------\n";
-    mySelectionSort.sort(a, 10);
-    printArray(a, 10);
+    mySelectionSort.sort(a, ARRAY_SIZE);
+    printArray(a, ARRAY_SIZE);
 
     cout << "----- INSERTION SORT ------\n";
-    myInsertionSort.sort(b, 10);
-    printArray(b, 10);
+    myInsertionSort.sort(b, ARRAY_SIZE);
+    printArray(b, ARRAY_SIZE);
     cout << "----- SHELL SORT ------\n";
-    myShellSort.sort(c, 10);
-    printArray(c, 10);
+    myShellSort.sort(c, ARRAY_SIZE);
+    printArray(c, ARRAY_SIZE);
     cout << "----- MERGE SORT ------\n";
-    myMergeSort.sort(d, 10);
-    printArray(d, 10);
+    myMergeSort.sort(d, ARRAY_SIZE);
+    printArray(d, ARRAY_SIZE);
     cout << "----- QUICK SORT SIMPLE ------\n";
-    mySimpleQuickSort.sort(e, 10);
-    printArray(e, 10);
+    mySimpleQuickSort.sort(e, ARRAY_SIZE);
+    printArray(e, ARRAY_SIZE);
     cout << "----- QUICK SORT EFFICIENT ------\n";
-    myEfficientQuickSort.sort(f, 10);
-    printArray(f, 10);
+    int rtn = myEfficientQuickSort.selectKthSmallestElement(f, ARRAY_SIZE, 3);
+    cout << "Kth smallest element is : " << rtn << std::endl;
+    printArray(f, ARRAY_SIZE);
+    cout << "----- QUICK SORT EFFICIENT ------\n";
+    int equalValues[] = { 0, 12, 3, 7, 20, 3, 1, 7, 0, 3, 8, 7};
+    mySimpleQuickSort.resetCounter();
+    my3WayQuickSort.sort(equalValues, 12);
+    printArray(equalValues, 12);
+    
 }

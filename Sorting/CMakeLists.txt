@@ -8,6 +8,7 @@ project(sort C CXX)
 
 add_executable(${PROJECT_NAME} sortArray.cpp)
 
+set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 
 add_subdirectory(insertion)
 add_subdirectory(selection)

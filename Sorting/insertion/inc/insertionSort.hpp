@@ -10,4 +10,6 @@ private:
     void swap(Ttype inArray[], int x, int y);
 };
 
+#include "insertionSort.inl"
+
 #endif // INSERTIONSORTING_INCLUDED_
