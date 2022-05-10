@@ -3,7 +3,7 @@ template <typename Ttype>
 inline 
 Ttype CBinaryHeap<Ttype>::delMax(){
     Ttype max = heapArray[0];
-    this->swap(heapArray, 0, heapArray.size - 1);
+    this->swap(heapArray, 0, heapArray.size() - 1);
     heapArray.pop_back();
     sink(0);
 #ifdef PRINT_ENABLED
@@ -35,10 +35,11 @@ void CBinaryHeap<Ttype>::swim(int idx){
     Ttype key = heapArray[idx];
     while(k > 0)
     {
-        if(heapArray[k/2] < key){
+        int j = (k-1)/2;
+        if(heapArray[j] < key){
             //std::cout << heapArray[k/2] << "<" << key << std::endl;
-            this->swap(heapArray, k/2, k);
-            k = k/2;
+            this->swap(heapArray, j, k);
+            k = j;
         } else 
         {
             break;
@@ -59,14 +60,16 @@ void CBinaryHeap<Ttype>::sink(int idx){
 #endif
     int k = idx;
     Ttype key = heapArray[idx];
-    while(k < heapArray.size())
+    int j = 0;
+    while((2*k+1) < heapArray.size())
     {
-        if(heapArray[2*k] > key && heapArray[2*k] > heapArray[2*k + 1]){
-            this->swap(heapArray, k, 2*k);
-            k *= 2;
-        } else if(heapArray[2*k + 1] > key) {
-            this->swap(heapArray, k, 2*k);
-            k = 2*k + 1;    
+        j = 2*k + 1;
+        if((heapArray[j] > key) && (heapArray[j] > heapArray[j + 1])){
+            this->swap(heapArray, k, j);
+            k = j;
+        } else if(heapArray[j + 1] > key) {
+            this->swap(heapArray, k, j + 1);
+            k = j + 1;    
         } else {
             break;
         }
