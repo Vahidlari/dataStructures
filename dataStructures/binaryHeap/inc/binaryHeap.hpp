@@ -12,7 +12,7 @@ public:
     CBinaryHeap() = default;
     Ttype delMax();
     void insert(Ttype item);
-private:
+protected:
     void swim(int idx);
     void sink(int idx);
 
