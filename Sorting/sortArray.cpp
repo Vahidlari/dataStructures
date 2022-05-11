@@ -1,8 +1,6 @@
-#include <stdio.h>
-#include <iostream>
-
-#include "insertionSort.hpp"
-#include "selectionSort.hpp"
+#include <insertionSort.hpp>
+#include <selectionSort.hpp>
+#include <heapSort.hpp>
 
 using namespace std;
 
@@ -18,24 +16,19 @@ void CTest<T>::sayHello(){
 };
 
 template<typename Ttype>
-void printArray(Ttype a[], int size){
-    for(int i = 0; i < size; i++){
-        cout << a[i] << ", ";
+void printArray(Ttype a){
+    for(auto element: a ){
+        cout << element << ", ";
     }
-    cout << std::endl;
+    std::cout << std::endl;
 }
 
 int main()
 {
-    std::cout << "Hello World!" << std::endl;
-    CSelectionSort<int> selectionSort;
-    CTest<int> myTest;
-    myTest.sayHello();
-    //int a[10] = {8, 9, 2, 4, 1, 5, 3, 0, 6, 7};
-    //printArray(a, 10);
-    //
-    selectionSort.sayHello();
-    //printArray(a, 10);
+    CHeapSort<int> myHeapSort;
+    std::vector<int> a = {8, 9, 2, 4, 1, 5, 3, 0, 6, 7};
+    myHeapSort.sort(a);
+    printArray(a);
 
     return 0;
 }
