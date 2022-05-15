@@ -36,8 +36,18 @@ void testBST(){
     myTree.put('z', 2);
     myTree.put('a', 1);
     myTree.put('o', 10);
-    myTree.printLevelOrderedTraverse();
+    myTree.put('r', 23);
+    myTree.put('k', 33);
+    myTree.put('e', 0);
+    myTree.put('s', 50);
 
+    myTree.printLevelOrderedTraverse();
+    
+    char key = 'c';
+    std::cout << "Rank of " << key << " is " << myTree.rank(key) << std::endl;
+    char key_low = 'b';
+    char key_high = 'x';
+    std::cout << myTree.size(key_low, key_high) << std::endl;
 }
 
 int main()
