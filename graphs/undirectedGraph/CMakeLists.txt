@@ -1,0 +1,1 @@
+add_library(undirectedGraph inc/undirectedGraph.hpp src/undirectedGraph.cpp)
