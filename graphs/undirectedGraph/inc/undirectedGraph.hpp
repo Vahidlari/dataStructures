@@ -12,6 +12,7 @@ public:
 
     CUndirectedGraph() = default;
     CUndirectedGraph(int numberOfVertices);
+    CUndirectedGraph(CUndirectedGraph& _graph);
 
     void        addEdge(int src, int dst);
     void        print();

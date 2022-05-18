@@ -16,7 +16,7 @@ private:
     
     vector<bool> visited;
     vector<vertix_index_t> visitedFrom;
-    CUndirectedGraph& graph;
+    CUndirectedGraph *graph;
 };
 
 #endif  //DEPTHFIRSTSEARCH_INCLUDED_

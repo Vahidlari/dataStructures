@@ -1,7 +1,7 @@
 #include "../inc/depthFirstSearch.hpp"
 
 CDfs::CDfs(CUndirectedGraph& _graph, vertix_index_t src){
-    graph = _graph;
+    graph = &_graph;
     
 }
 

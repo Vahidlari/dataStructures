@@ -6,6 +6,12 @@ CUndirectedGraph::CUndirectedGraph(int numberOfVertices)
     adjacencyListArray.resize(numberOfVertices);
 }
 
+CUndirectedGraph::CUndirectedGraph(CUndirectedGraph& _graph)
+{
+    adjacencyListArray = _graph.adjacencyListArray;
+}
+
+
 void CUndirectedGraph::addEdge(int src, int dst)
 {
     if(src < adjacencyListArray.size() && dst < adjacencyListArray.size())
