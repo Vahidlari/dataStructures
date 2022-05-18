@@ -2,6 +2,7 @@
 #include <undirectedGraph.hpp>
 #include <depthFirstSearch.hpp>
 #include <breathFirstSearch.hpp>
+#include <connectedComponents.hpp>
 #include <deque>
 
 
@@ -53,7 +54,7 @@ void testBfs(){
     myGraph.addEdge(3,4);
     myGraph.addEdge(4,6);
     myGraph.addEdge(5,6);
-    myGraph.addEdge(6,7);
+    //myGraph.addEdge(6,7);
     myGraph.addEdge(7,8);
     myGraph.addEdge(7,9);
     std::cout << "number of vertices: " << myGraph.getVertixCount() << std::endl;
@@ -67,6 +68,9 @@ void testBfs(){
         std::cout << v << " -> ";
     }
     std::cout << std::endl;
+    CConnectedComponents myConnectedComponents(myGraph);
+    std::cout << "Number of connected components: " << myConnectedComponents.getNumberOfComponents();
+    myConnectedComponents.printConnectedComponents();
 }
 
 int main()
