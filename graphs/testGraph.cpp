@@ -1,6 +1,7 @@
 #include <iostream>
 #include <undirectedGraph.hpp>
 #include <depthFirstSearch.hpp>
+#include <breathFirstSearch.hpp>
 #include <deque>
 
 
@@ -35,8 +36,32 @@ void testDfs(){
     std::cout << "number of edges: " << myGraph.getEdgeCount() << std::endl;
     CDfs myDfs(myGraph,1);
     uint32_t dst = 4;
-    std::cout << "Does is has path to " << dst << ": " << myDfs.hasPathTo(dst) << std::endl;
+    std::cout << "Does it have a path to " << dst << ": " << myDfs.hasPathTo(dst) << std::endl;
     deque<uint32_t> path = myDfs.getPathTo(dst);
+    for(auto& v : path)
+    {
+        std::cout << v << " -> ";
+    }
+    std::cout << std::endl;
+}
+
+void testBfs(){
+    CUndirectedGraph myGraph(11);
+    myGraph.addEdge(1,3);
+    myGraph.addEdge(1,2);
+    myGraph.addEdge(3,5);
+    myGraph.addEdge(3,4);
+    myGraph.addEdge(4,6);
+    myGraph.addEdge(5,6);
+    myGraph.addEdge(6,7);
+    myGraph.addEdge(7,8);
+    myGraph.addEdge(7,9);
+    std::cout << "number of vertices: " << myGraph.getVertixCount() << std::endl;
+    std::cout << "number of edges: " << myGraph.getEdgeCount() << std::endl;
+    CBfs myBfs(myGraph,1);
+    uint32_t dst = 9;
+    std::cout << "Does it have a path to " << dst << ": " << myBfs.hasPathTo(dst) << std::endl;
+    deque<uint32_t> path = myBfs.getPathTo(dst);
     for(auto& v : path)
     {
         std::cout << v << " -> ";
@@ -46,6 +71,6 @@ void testDfs(){
 
 int main()
 {
-    testDfs();
+    testBfs();
     return 0;
 }

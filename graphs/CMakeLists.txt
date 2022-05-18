@@ -12,10 +12,11 @@ set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 
 add_subdirectory(undirectedGraph)
 add_subdirectory(depthFirstSearch)
+add_subdirectory(breathFirstSearch)
 
-target_include_directories(${PROJECT_NAME} PUBLIC depthFirstSearch/inc)
+target_include_directories(${PROJECT_NAME} PUBLIC depthFirstSearch/inc breathFirstSearch/inc)
 
-target_link_directories(${PROJECT_NAME} PUBLIC undirectedGraph/ depthFirstSearch/)
+target_link_directories(${PROJECT_NAME} PUBLIC undirectedGraph/ depthFirstSearch/ breathFirstSearch/)
 
 #target_compile_options(${PROJECT_NAME} PUBLIC -target x86_64-apple-darwin)
 
@@ -24,4 +25,4 @@ target_link_directories(${PROJECT_NAME} PUBLIC undirectedGraph/ depthFirstSearch
 
 add_compile_definitions(${PROJECT_NAME} PRINT_ENABLED)
 
-target_link_libraries(${PROJECT_NAME} undirectedGraph depthFirstSearch)
+target_link_libraries(${PROJECT_NAME} undirectedGraph depthFirstSearch breathFirstSearch)
