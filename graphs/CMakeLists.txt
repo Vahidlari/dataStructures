@@ -22,6 +22,6 @@ target_link_directories(${PROJECT_NAME} PUBLIC undirectedGraph/ depthFirstSearch
 #add_custom_target(build-time-make-directory ALL
 #    COMMAND ${CMAKE_COMMAND} -E make_directory build)
 
-#add_compile_definitions(${PROJECT_NAME} PRINT_ENABLED)
+add_compile_definitions(${PROJECT_NAME} PRINT_ENABLED)
 
 target_link_libraries(${PROJECT_NAME} undirectedGraph depthFirstSearch)
