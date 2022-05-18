@@ -1,7 +1,14 @@
 #include <baseDataType.hpp>
 #include <binaryHeap.hpp>
 #include <binarySearchTree.hpp>
+#include <someType.hpp>
+
 using namespace std;
+
+void testSomeType(){
+    CSomeType myType;
+    myType.somePrint();
+}
 
 void testHeap(){
 
@@ -52,7 +59,7 @@ void testBST(){
 
 int main()
 {
-    testBST();
+    testSomeType();
 
 
 }

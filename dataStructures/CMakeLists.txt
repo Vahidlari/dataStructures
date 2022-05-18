@@ -11,12 +11,13 @@ add_executable(${PROJECT_NAME} testDataTypes.cpp)
 set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 
 add_subdirectory(baseDataType)
+add_subdirectory(someType)
 add_subdirectory(binaryHeap)
 add_subdirectory(binarySearchTree)
 
-target_include_directories(${PROJECT_NAME} PUBLIC baseDataType/inc binaryHeap/inc binarySearchTree/inc)
+target_include_directories(${PROJECT_NAME} PUBLIC baseDataType/inc someType/inc binaryHeap/inc binarySearchTree/inc)
 
-target_link_directories(${PROJECT_NAME} PUBLIC baseDataType/ binaryHeap/ binarySearchTree/)
+target_link_directories(${PROJECT_NAME} PUBLIC baseDataType/ someType/ binaryHeap/ binarySearchTree/)
 
 #target_compile_options(${PROJECT_NAME} PUBLIC -target x86_64-apple-darwin)
 
@@ -25,4 +26,4 @@ target_link_directories(${PROJECT_NAME} PUBLIC baseDataType/ binaryHeap/ binaryS
 
 add_compile_definitions(${PROJECT_NAME} PRINT_ENABLED)
 
-target_link_libraries(${PROJECT_NAME} baseDataType binaryHeap binarySearchTree)
+target_link_libraries(${PROJECT_NAME} baseDataType someType binaryHeap binarySearchTree)
