@@ -1,5 +1,5 @@
-#ifndef BASEGRAPH_INCLUDED_
-#define BASEGRAPH_INCLUDED_
+#ifndef UNDIRECTEDGRAPH_INCLUDCED_
+#define UNDIRECTEDGRAPH_INCLUDCED_
 
 #include <vector>
 
@@ -22,4 +22,4 @@ public:
 private:
     vector<vector<vertix_index_t> > adjacencyListArray;
 };
-#endif //BASEGRAPH_INCLUDED_
+#endif //UNDIRECTEDGRAPH_INCLUDCED_
