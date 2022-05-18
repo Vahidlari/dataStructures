@@ -13,7 +13,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 add_subdirectory(undirectedGraph)
 add_subdirectory(depthFirstSearch)
 
-target_include_directories(${PROJECT_NAME} PUBLIC undirectedGraph/inc depthFirstSearch/inc)
+target_include_directories(${PROJECT_NAME} PUBLIC depthFirstSearch/inc)
 
 target_link_directories(${PROJECT_NAME} PUBLIC undirectedGraph/ depthFirstSearch/)
 
@@ -22,6 +22,6 @@ target_link_directories(${PROJECT_NAME} PUBLIC undirectedGraph/ depthFirstSearch
 #add_custom_target(build-time-make-directory ALL
 #    COMMAND ${CMAKE_COMMAND} -E make_directory build)
 
-add_compile_definitions(${PROJECT_NAME} PRINT_ENABLED)
+#add_compile_definitions(${PROJECT_NAME} PRINT_ENABLED)
 
 target_link_libraries(${PROJECT_NAME} undirectedGraph depthFirstSearch)
