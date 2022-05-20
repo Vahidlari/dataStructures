@@ -1,0 +1,1 @@
+add_library(directedGraph inc/directedGraph.hpp src/directedGraph.cpp)
