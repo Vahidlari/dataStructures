@@ -1,13 +1,23 @@
 #include <iostream>
 #include <undirectedGraph.hpp>
+#include <directedGraph.hpp>
 #include <depthFirstSearch.hpp>
 #include <breathFirstSearch.hpp>
 #include <connectedComponents.hpp>
+#include <depthFirstOrder.hpp>
 #include <deque>
 
+template<typename T>
+void print(deque<T> q)
+{
+    for(auto& v : q)
+    {
+        std::cout << v << " -> ";
+    }
+    std::cout << std::endl;
+}
 
-
-void testDirectedGraph()
+void testUnDirectedGraph()
 {
     CUndirectedGraph myGraph(5);
     myGraph.addEdge(0,1);
@@ -20,6 +30,28 @@ void testDirectedGraph()
     std::cout << "number of edges: " << myGraph.getEdgeCount() << std::endl;
 
     myGraph.print();
+}
+
+void testDirectedGraph()
+{
+    CDirectedGraph myGraph(7);
+    myGraph.addEdge(0,1);
+    myGraph.addEdge(0,2);
+    myGraph.addEdge(0,5);
+    myGraph.addEdge(1,4);
+    myGraph.addEdge(3,2);
+    myGraph.addEdge(3,4);
+    myGraph.addEdge(3,5);
+    myGraph.addEdge(3,6);
+    myGraph.addEdge(5,2);
+    myGraph.addEdge(6,0);
+    std::cout << "number of vertices: " << myGraph.getVertixCount() << std::endl;
+    std::cout << "number of edges: " << myGraph.getEdgeCount() << std::endl;
+    myGraph.print();
+    myGraph.reverse().print();
+    CDepthFirstOrder myReversePost;
+    print(myReversePost.reverseOrderList(myGraph));
+
 }
 
 void testDfs(){
@@ -39,11 +71,7 @@ void testDfs(){
     uint32_t dst = 4;
     std::cout << "Does it have a path to " << dst << ": " << myDfs.hasPathTo(dst) << std::endl;
     deque<uint32_t> path = myDfs.getPathTo(dst);
-    for(auto& v : path)
-    {
-        std::cout << v << " -> ";
-    }
-    std::cout << std::endl;
+    print(path);
 }
 
 void testBfs(){
@@ -75,6 +103,6 @@ void testBfs(){
 
 int main()
 {
-    testBfs();
+    testDirectedGraph();
     return 0;
 }
