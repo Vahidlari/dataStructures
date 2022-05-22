@@ -4,6 +4,7 @@
 #include <deque>
 #include <unordered_set>
 #include <directedGraph.hpp>
+#include <util.hpp>
 
 class CDepthFirstOrder
 {
@@ -13,14 +14,14 @@ public:
     using stack_t = deque<vertix_index_t>; 
 
     CDepthFirstOrder() = default;
-    stack_t reverseOrderList();
-    stack_t reverseOrderList(CDirectedGraph& graph);
+    stack_t postOrderList();
+    stack_t postOrderList(CDirectedGraph& graph);
 
 private:
     void dfs(CDirectedGraph& graph, vertix_index_t src);
 
     vertix_list_t visitedList;
-    stack_t reverseOrder;
+    stack_t postOrder;
 };
 
 #endif //DEPTHFIRSTORDER_INCLUDED_

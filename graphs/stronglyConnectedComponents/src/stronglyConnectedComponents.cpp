@@ -8,12 +8,17 @@ CStronglyConnectedComponents::CStronglyConnectedComponents(CDirectedGraph& _grap
     visitedFrom.resize(vertixCount);
     componentId.resize(vertixCount);
     componentCount = 0;
-    for(int i = 0; i < vertixCount; ++i)
+    CDepthFirstOrder dfo;
+    CDirectedGraph reverseGraph = _graph.reverse();
+    stack_t reversePostOrderList = dfo.postOrderList(reverseGraph);
+    print(reversePostOrderList);
+
+    for(auto& v : reversePostOrderList)
     {
-        if(!visited[i])
+        if(!visited[v])
         {
             ++componentCount;
-            dfs(_graph, i);
+            dfs(_graph, v);
         }
     }
 }
@@ -53,14 +58,13 @@ uint32_t CStronglyConnectedComponents::getNumberOfComponents(){
 }
 
 void CStronglyConnectedComponents::printConnectedComponents(){
-    uint32_t idx = componentId.size() + 1;
-    for(int i = 0; i < componentId.size(); ++i){
-        if(idx != componentId[i]){
-            idx = componentId[i];
-            std::cout << std::endl << "Component " << idx << ": " << i << ", ";
-        } else {
-            std::cout << i << ", ";
+    for(uint32_t idx = 0; idx < componentCount; ++idx){
+        std::cout << "Component " << idx  << ": ";
+        for(uint32_t i = 0; i < componentId.size(); ++i){
+            if(idx == componentId[i]){
+                std::cout << i << ", ";
+            }
         }
+        std::cout << std::endl;
     }
-    std::cout << std::endl;
 }
