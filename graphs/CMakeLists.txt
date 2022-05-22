@@ -17,6 +17,7 @@ add_subdirectory(breathFirstSearch)
 add_subdirectory(connectedComponents)
 add_subdirectory(stronglyConnectedComponents)
 add_subdirectory(weightedGraph)
+add_subdirectory(minimumSpanningTree)
 
 target_include_directories(${PROJECT_NAME} PUBLIC 
     depthFirstSearch/inc 
@@ -24,6 +25,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC
     connectedComponents/inc 
     stronglyConnectedComponents/inc 
     weightedGraph/inc
+    minimumSpanningTree/inc
 ‚) 
 
 target_link_directories(${PROJECT_NAME} PUBLIC 
@@ -34,6 +36,7 @@ target_link_directories(${PROJECT_NAME} PUBLIC
     connectedComponents/ 
     stronglyConnectedComponents/ 
     weightedGraph/
+    minimumSpanningTree/
 )
 
 #target_compile_options(${PROJECT_NAME} PUBLIC -target x86_64-apple-darwin)
@@ -51,4 +54,5 @@ target_link_libraries(${PROJECT_NAME}
     connectedComponents 
     stronglyConnectedComponents
     weightedGraph
+    minimumSpanningTree
 )
