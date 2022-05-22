@@ -5,16 +5,45 @@
 #include <breathFirstSearch.hpp>
 #include <connectedComponents.hpp>
 #include <depthFirstOrder.hpp>
+#include <stronglyConnectedComponents.hpp>
+#include <util.hpp>
 #include <deque>
 
-template<typename T>
-void print(deque<T> q)
+void testSCC()
 {
-    for(auto& v : q)
-    {
-        std::cout << v << " -> ";
-    }
-    std::cout << std::endl;
+    CDirectedGraph myGraph(13);
+    myGraph.addEdge(0,1);
+    myGraph.addEdge(0,5);
+    myGraph.addEdge(2,0);
+    myGraph.addEdge(2,3);
+    myGraph.addEdge(3,2);
+    myGraph.addEdge(3,5);
+    myGraph.addEdge(4,2);
+    myGraph.addEdge(4,3);
+    myGraph.addEdge(5,4);
+    myGraph.addEdge(6,0);
+    myGraph.addEdge(6,4);
+    myGraph.addEdge(6,8);
+    myGraph.addEdge(6,9);
+    myGraph.addEdge(7,6);
+    myGraph.addEdge(7,9);
+    myGraph.addEdge(8,6);
+    myGraph.addEdge(9,10);
+    myGraph.addEdge(9,11);
+    myGraph.addEdge(10,12);
+    myGraph.addEdge(11,12);
+    myGraph.addEdge(11,4);
+    myGraph.addEdge(12,9);
+    std::cout << "number of vertices: " << myGraph.getVertixCount() << std::endl;
+    std::cout << "number of edges: " << myGraph.getEdgeCount() << std::endl;
+    // CDepthFirstOrder myReverse;
+    // CDirectedGraph myReverseGraph = myGraph.reverse();
+    // myReverseGraph.print();
+    // print(myReverse.postOrderList(myReverseGraph));
+    CStronglyConnectedComponents myScc(myGraph);
+    std::cout << "Number of connected components: " << myScc.getNumberOfComponents() << std::endl;
+    myScc.printConnectedComponents();
+
 }
 
 void testUnDirectedGraph()
@@ -49,8 +78,8 @@ void testDirectedGraph()
     std::cout << "number of edges: " << myGraph.getEdgeCount() << std::endl;
     myGraph.print();
     myGraph.reverse().print();
-    CDepthFirstOrder myReversePost;
-    print(myReversePost.reverseOrderList(myGraph));
+    CDepthFirstOrder myPostOrder;
+    print(myPostOrder.postOrderList(myGraph));
 
 }
 
@@ -103,6 +132,6 @@ void testBfs(){
 
 int main()
 {
-    testDirectedGraph();
+    testSCC();
     return 0;
 }
