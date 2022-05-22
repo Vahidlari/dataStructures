@@ -4,11 +4,11 @@
 
 template<typename T> 
 inline 
-void print(deque<T> q)
+void print(T q)
 {
     for(auto& v : q)
     {
-        std::cout << v << " -> ";
+        std::cout << v << ", ";
     }
     std::cout << std::endl;
 }

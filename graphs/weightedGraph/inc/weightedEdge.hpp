@@ -17,14 +17,15 @@ public:
     {
     }
     
-    const vertix_index_t either();
-    const vertix_index_t other(vertix_index_t v);
-    const edge_weight_t weight();
+    const vertix_index_t either() const;
+    const vertix_index_t other(vertix_index_t v) const;
+    const edge_weight_t weight() const;
     bool operator>(const CEdge& other);
     bool operator<(const CEdge& other);
     bool operator==(const CEdge& other);
     CEdge& operator=(const CEdge& other);
-    void print();
+    static int compareTo(const CEdge& lhs, const CEdge& rsh);
+    void print() const;
 
 private:
     vertix_index_t srcV, dstV;

@@ -7,8 +7,32 @@
 #include <depthFirstOrder.hpp>
 #include <stronglyConnectedComponents.hpp>
 #include <weightedEdgeGraph.hpp>
+#include <unionFind.hpp>
+#include <minimumSpanningTree.hpp>
 #include <util.hpp>
 #include <deque>
+
+void printSortedEdgeList(typename CWeightedEdgeGraph::sorted_edge_list_t edgeList)
+{
+    for(CEdge edge : edgeList)
+    {
+        edge.print();
+        std::cout << std::endl;
+    }
+}
+
+void testUnionFind()
+{
+    CUnionFind myUf(10);
+    myUf.addUnion(4,3);
+    myUf.addUnion(3,8);
+    myUf.addUnion(6,5);
+    myUf.addUnion(9,4);
+    myUf.addUnion(2,1);
+    std::cout << "Connected 8, 9: " << myUf.connected(8,9) << std::endl;
+    std::cout << "Connected 4, 5: " << myUf.connected(4,5) << std::endl;
+
+}
 
 void testWeightedEdgeGraph()
 {
@@ -31,6 +55,12 @@ void testWeightedEdgeGraph()
     myGraph.addEdge(CEdge(6, 4, 0.93));
 
     myGraph.print();
+    auto sortedEdgeList = myGraph.getWeightSortedEdges();
+    printSortedEdgeList(sortedEdgeList);
+
+    CMinimumSpanningTree myMST(myGraph);
+    myMST.printMst();
+
 }
 
 void testSCC()
