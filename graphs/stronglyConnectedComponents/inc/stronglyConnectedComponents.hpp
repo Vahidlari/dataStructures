@@ -1,13 +1,15 @@
-#ifndef CONNECTEDCOMPONENTS_INCLUDED_   
-#define CONNECTEDCOMPONENTS_INCLUDED_
+#ifndef STONGLYCONNECTEDCOMPONENTS_INCLUDED_   
+#define STONGLYCONNECTEDCOMPONENTS_INCLUDED_
 
 #include <directedGraph.hpp>
+#include "depthFirstOrder.hpp"
 #include <deque>
 
 class CStronglyConnectedComponents
 {
 public:
     using vertix_index_t = typename CDirectedGraph::vertix_index_t;
+    using stack_t = typename CDepthFirstOrder::stack_t;
 
     CStronglyConnectedComponents() = default;
     CStronglyConnectedComponents(CDirectedGraph& _graph);
@@ -23,6 +25,7 @@ private:
     vector<vertix_index_t> componentId;
     CDirectedGraph *graph;
     uint32_t componentCount;
+    
 };
 
-#endif  //CONNECTEDCOMPONENTS_INCLUDED_
+#endif  //STONGLYCONNECTEDCOMPONENTS_INCLUDED_

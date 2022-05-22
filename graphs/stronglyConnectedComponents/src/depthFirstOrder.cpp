@@ -1,10 +1,10 @@
 #include "../inc/depthFirstOrder.hpp"
 
-typename CDepthFirstOrder::stack_t CDepthFirstOrder::reverseOrderList(){
-    return reverseOrder;
+typename CDepthFirstOrder::stack_t CDepthFirstOrder::postOrderList(){
+    return postOrder;
 }
 
-typename CDepthFirstOrder::stack_t CDepthFirstOrder::reverseOrderList(CDirectedGraph& graph){
+typename CDepthFirstOrder::stack_t CDepthFirstOrder::postOrderList(CDirectedGraph& graph){
     for(int i = 0; i < graph.getVertixCount(); i++)
     {
         if(!visitedList.contains(i))
@@ -12,11 +12,12 @@ typename CDepthFirstOrder::stack_t CDepthFirstOrder::reverseOrderList(CDirectedG
             dfs(graph, i);
         }
     }
-    return reverseOrder;
+    return postOrder;
 }
 
 void CDepthFirstOrder::dfs(CDirectedGraph& graph, vertix_index_t src){
     visitedList.insert(src);
+    std::cout << std::endl << "Added " << src << " to the visited List and running dfs: ";
     for(auto& v: graph.getAdjacents(src))
     {
         if(!visitedList.contains(v))
@@ -24,6 +25,7 @@ void CDepthFirstOrder::dfs(CDirectedGraph& graph, vertix_index_t src){
             dfs(graph, v);
         }
     }
-    reverseOrder.push_front(src);
+    postOrder.push_front(src);
+    std::cout << "Pushed " << src << " to the post order List\n";
 }
 

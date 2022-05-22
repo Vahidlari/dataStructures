@@ -4,4 +4,4 @@ add_library(stronglyConnectedComponents
     inc/depthFirstOrder.hpp 
     src/depthFirstOrder.cpp
 )
-target_include_directories(stronglyConnectedComponents PUBLIC ../directedGraph/inc)
+target_include_directories(stronglyConnectedComponents PUBLIC ../directedGraph/inc ../util/inc)
