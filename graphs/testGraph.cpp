@@ -6,8 +6,32 @@
 #include <connectedComponents.hpp>
 #include <depthFirstOrder.hpp>
 #include <stronglyConnectedComponents.hpp>
+#include <weightedEdgeGraph.hpp>
 #include <util.hpp>
 #include <deque>
+
+void testWeightedEdgeGraph()
+{
+    CWeightedEdgeGraph myGraph(8);
+    myGraph.addEdge(CEdge(0, 7, 0.16));
+    myGraph.addEdge(CEdge(2, 3, 0.17));
+    myGraph.addEdge(CEdge(1, 7, 0.19));
+    myGraph.addEdge(CEdge(0, 2, 0.26));
+    myGraph.addEdge(CEdge(5, 7, 0.28));
+    myGraph.addEdge(CEdge(1, 3, 0.29));
+    myGraph.addEdge(CEdge(1, 5, 0.32));
+    myGraph.addEdge(CEdge(2, 7, 0.34));
+    myGraph.addEdge(CEdge(4, 5, 0.35));
+    myGraph.addEdge(CEdge(1, 2, 0.36));
+    myGraph.addEdge(CEdge(4, 7, 0.37));
+    myGraph.addEdge(CEdge(0, 4, 0.38));
+    myGraph.addEdge(CEdge(6, 2, 0.40));
+    myGraph.addEdge(CEdge(3, 6, 0.52));
+    myGraph.addEdge(CEdge(6, 0, 0.58));
+    myGraph.addEdge(CEdge(6, 4, 0.93));
+
+    myGraph.print();
+}
 
 void testSCC()
 {
@@ -132,6 +156,6 @@ void testBfs(){
 
 int main()
 {
-    testSCC();
+    testWeightedEdgeGraph();
     return 0;
 }

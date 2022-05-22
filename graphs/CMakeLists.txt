@@ -16,10 +16,25 @@ add_subdirectory(depthFirstSearch)
 add_subdirectory(breathFirstSearch)
 add_subdirectory(connectedComponents)
 add_subdirectory(stronglyConnectedComponents)
+add_subdirectory(weightedGraph)
 
-target_include_directories(${PROJECT_NAME} PUBLIC depthFirstSearch/inc breathFirstSearch/inc connectedComponents/inc stronglyConnectedComponents/inc) 
+target_include_directories(${PROJECT_NAME} PUBLIC 
+    depthFirstSearch/inc 
+    breathFirstSearch/inc 
+    connectedComponents/inc 
+    stronglyConnectedComponents/inc 
+    weightedGraph/inc
+‚) 
 
-target_link_directories(${PROJECT_NAME} PUBLIC undirectedGraph/ directedGraph/ depthFirstSearch/ breathFirstSearch/ connectedComponents/ stronglyConnectedComponents/)
+target_link_directories(${PROJECT_NAME} PUBLIC 
+    undirectedGraph/ 
+    directedGraph/ 
+    depthFirstSearch/ 
+    breathFirstSearch/
+    connectedComponents/ 
+    stronglyConnectedComponents/ 
+    weightedGraph/
+)
 
 #target_compile_options(${PROJECT_NAME} PUBLIC -target x86_64-apple-darwin)
 
@@ -28,4 +43,12 @@ target_link_directories(${PROJECT_NAME} PUBLIC undirectedGraph/ directedGraph/ d
 
 add_compile_definitions(${PROJECT_NAME} PRINT_ENABLED)
 
-target_link_libraries(${PROJECT_NAME} undirectedGraph directedGraph depthFirstSearch breathFirstSearch connectedComponents stronglyConnectedComponents)
+target_link_libraries(${PROJECT_NAME} 
+    undirectedGraph 
+    directedGraph 
+    depthFirstSearch 
+    breathFirstSearch 
+    connectedComponents 
+    stronglyConnectedComponents
+    weightedGraph
+)
