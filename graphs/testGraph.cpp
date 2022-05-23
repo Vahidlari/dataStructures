@@ -58,7 +58,7 @@ void testWeightedEdgeGraph()
     auto sortedEdgeList = myGraph.getWeightSortedEdges();
     printSortedEdgeList(sortedEdgeList);
 
-    CMinimumSpanningTree myMST(myGraph);
+    CMinimumSpanningTree myMST(myGraph, EMstAlgorithm::prim);
     myMST.printMst();
 
 }
