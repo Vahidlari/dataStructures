@@ -23,8 +23,7 @@ typename CMinimumSpanningTree::adjacency_list_t CMinimumSpanningTree::edges(){
 }
 /// receives a sorted list of edges in a graph, takes the smallest and checks if the edge does not 
 /// create a cycle in the list of selected edges. The cycle creation check is performed by 
-/// examining of the ends of an edge are already connected in the selected subtree. The check is 
-/// performed using union find algorithm.
+/// examining of the ends of an edge are already connected in the selected subtree using the union find algorithm.
 /// If not, the edge is added to the union find structure and as well as to the list of selected 
 /// edges, and removed from the sorted list.
 
@@ -63,7 +62,7 @@ void CMinimumSpanningTree::printMst()
 }
 
 /// The algorithm keeps a list of visited vetices and a sorted list of the edges connected to the selected edges.
-/// Each time a new vertix is added, all its connected edges, except of those eding to a visiting vertix, shall be added to the sort list.
+/// Each time a new vertix is added, all its connected edges, except of those ending to a visiting vertix, shall be added to the sort list.
 /// In each round, an edge with smallest weight is taken and the iteration continues till the sorted list is empty.
 void CMinimumSpanningTree::primMst(CWeightedEdgeGraph graph){
     std::vector<bool> visited(graph.getVertixCount(), false);
