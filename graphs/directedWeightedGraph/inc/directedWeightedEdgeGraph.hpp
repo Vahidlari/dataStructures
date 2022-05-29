@@ -5,7 +5,7 @@
 #include "directedWeightedEdge.hpp"
 #include <set>
 
-auto cmp = [](const CDWEdge& a, const CDWEdge& b) 
+auto directedWeightedEdgeCompare = [](const CDWEdge& a, const CDWEdge& b) 
 { 
     return CDWEdge::compareTo(a, b) == -1; 
 };
@@ -15,9 +15,10 @@ class CDirectedWeightedEdgeGraph
 {
 public:
     using edge_t = CDWEdge;
+    using virtex_index_t = edge_t::vertix_index_t;
     using adjacency_list_t = std::vector<edge_t>;
     using adjacency_list_array_t = std::vector<adjacency_list_t>;
-    using sorted_edge_list_t = std::set<edge_t, decltype(cmp)>;
+    using sorted_edge_list_t = std::set<edge_t, decltype(directedWeightedEdgeCompare)>;
 
     CDirectedWeightedEdgeGraph(int numberOfVertices);
     CDirectedWeightedEdgeGraph(const CDirectedWeightedEdgeGraph& _graph);
@@ -27,7 +28,7 @@ public:
     void        print();
     uint32_t    getVertixCount();
     uint32_t    getEdgeCount();
-    const adjacency_list_t&  getAdjacents(int v);
+    const adjacency_list_t&  getAdjacents(virtex_index_t v);
     sorted_edge_list_t getWeightSortedEdges();
 
 private:

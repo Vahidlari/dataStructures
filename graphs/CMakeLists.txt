@@ -19,6 +19,7 @@ add_subdirectory(stronglyConnectedComponents)
 add_subdirectory(weightedGraph)
 add_subdirectory(directedWeightedGraph)
 add_subdirectory(minimumSpanningTree)
+add_subdirectory(shortestPath)
 
 target_include_directories(${PROJECT_NAME} PUBLIC 
     depthFirstSearch/inc 
@@ -28,6 +29,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC
     weightedGraph/inc
     directedWeightedGraph/inc
     minimumSpanningTree/inc
+    shortestPath/inc
 ) 
 
 target_link_directories(${PROJECT_NAME} PUBLIC 
@@ -40,6 +42,7 @@ target_link_directories(${PROJECT_NAME} PUBLIC
     weightedGraph/
     directedWeightedGraph/
     minimumSpanningTree/
+    shortestPath/
 )
 
 #target_compile_options(${PROJECT_NAME} PUBLIC -target x86_64-apple-darwin)
@@ -59,4 +62,5 @@ target_link_libraries(${PROJECT_NAME}
     weightedGraph
     directedWeightedGraph
     minimumSpanningTree
+    shortestPath
 )

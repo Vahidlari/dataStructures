@@ -9,6 +9,7 @@
 #include <weightedEdgeGraph.hpp>
 #include <unionFind.hpp>
 #include <minimumSpanningTree.hpp>
+#include <shortestPath.hpp>
 #include <util.hpp>
 #include <deque>
 
@@ -32,6 +33,38 @@ void testUnionFind()
     std::cout << "Connected 8, 9: " << myUf.connected(8,9) << std::endl;
     std::cout << "Connected 4, 5: " << myUf.connected(4,5) << std::endl;
 
+}
+
+void testShortestPath()
+{
+    CDirectedWeightedEdgeGraph myGraph(8);
+    myGraph.addEdge(CDWEdge(0, 1, 5));
+    myGraph.addEdge(CDWEdge(0, 4, 9));
+    myGraph.addEdge(CDWEdge(0, 7, 8));
+    myGraph.addEdge(CDWEdge(1, 2, 12));
+    myGraph.addEdge(CDWEdge(1, 3, 15));
+    myGraph.addEdge(CDWEdge(1, 7, 4));
+    myGraph.addEdge(CDWEdge(2, 3, 3));
+    myGraph.addEdge(CDWEdge(2, 6, 11));
+    myGraph.addEdge(CDWEdge(3, 6, 9));
+    myGraph.addEdge(CDWEdge(4, 5, 4));
+    myGraph.addEdge(CDWEdge(4, 6, 20));
+    myGraph.addEdge(CDWEdge(4, 7, 5));
+    myGraph.addEdge(CDWEdge(5, 2, 1));
+    myGraph.addEdge(CDWEdge(5, 6, 13));
+    myGraph.addEdge(CDWEdge(7, 5, 6));
+    myGraph.addEdge(CDWEdge(7, 2, 7));
+    CShortestPath shortestPath(myGraph,0,EShortPathAlgorithm::dijkstra);
+    shortestPath.printEdgeTo();
+    CShortestPath::path_t path = shortestPath.getPathTo(6);
+    while(!path.empty())
+    {
+        CShortestPath::edge_t edge = path.front();
+        edge.print();
+        std::cout << " -> ";
+        path.pop_front();
+    }
+    std::cout << "\n";
 }
 
 void testWeightedEdgeGraph()
@@ -186,6 +219,6 @@ void testBfs(){
 
 int main()
 {
-    testWeightedEdgeGraph();
+    testShortestPath();
     return 0;
 }
