@@ -46,14 +46,12 @@ uint32_t CDirectedWeightedEdgeGraph::getEdgeCount(){
     return size;
 }
 
-const typename CDirectedWeightedEdgeGraph::adjacency_list_t&  CDirectedWeightedEdgeGraph::getAdjacents(int v){
+const typename CDirectedWeightedEdgeGraph::adjacency_list_t&  CDirectedWeightedEdgeGraph::getAdjacents(virtex_index_t v){
     return adjacencyListArray[v];
 }
 
 //  typename CDirectedWeightedEdgeGraph::sorted_edge_list_t CDirectedWeightedEdgeGraph::getWeightSortedEdges()
 //  {
-//     // auto cmp = [](edge_t a, edge_t b) { return CDWEdge::compareTo(a, b) == -1; };
-//     // std::set<CDWEdge, decltype(cmp)> edgeSet;
 //     sorted_edge_list_t edgeSet;
 
 //     for(int v = 0; v < adjacencyListArray.size(); v++)
