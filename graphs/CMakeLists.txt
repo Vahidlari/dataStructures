@@ -17,6 +17,7 @@ add_subdirectory(breathFirstSearch)
 add_subdirectory(connectedComponents)
 add_subdirectory(stronglyConnectedComponents)
 add_subdirectory(weightedGraph)
+add_subdirectory(directedWeightedGraph)
 add_subdirectory(minimumSpanningTree)
 
 target_include_directories(${PROJECT_NAME} PUBLIC 
@@ -25,8 +26,9 @@ target_include_directories(${PROJECT_NAME} PUBLIC
     connectedComponents/inc 
     stronglyConnectedComponents/inc 
     weightedGraph/inc
+    directedWeightedGraph/inc
     minimumSpanningTree/inc
-‚) 
+) 
 
 target_link_directories(${PROJECT_NAME} PUBLIC 
     undirectedGraph/ 
@@ -36,6 +38,7 @@ target_link_directories(${PROJECT_NAME} PUBLIC
     connectedComponents/ 
     stronglyConnectedComponents/ 
     weightedGraph/
+    directedWeightedGraph/
     minimumSpanningTree/
 )
 
@@ -54,5 +57,6 @@ target_link_libraries(${PROJECT_NAME}
     connectedComponents 
     stronglyConnectedComponents
     weightedGraph
+    directedWeightedGraph
     minimumSpanningTree
 )
