@@ -11,6 +11,11 @@ public:
     {
     }
 
+    /// Merge algorithm sorts arrays in recursions. Each run a given array is halved into two sub-arrays, sorted in recursive calls.
+    /// On return, the two halves are merged into each other. Merging is performed by traversing through both halves, 
+    /// taking a smaller value from each half. It performed using an auxiliary array to hold sorted halves and the main one to 
+    /// to contain the final sorted array after merging in each step.
+     
     void sort(int inArray[], int arraySize) override;
 
 private:
