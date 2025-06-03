@@ -2,3 +2,6 @@
 build/
 */build/
 **/build/
+*/_build/
+**/_build/
+tools/docker/.env

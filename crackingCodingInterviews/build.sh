@@ -58,7 +58,7 @@ done
 
 # Clean the build directory if requested
 if [ "${CLEAN_BUILD}" = "ON" ]; then
-    rm -rf build
+    rm -rf _build
 fi
 
 
@@ -76,15 +76,15 @@ fi
 
 # Now build the project
 # Create a build directory
-mkdir -p build
+mkdir -p _build
 
 # Run CMake to generate the build files
-cmake -B build -S . -DCHAPTERS="${CHAPTERS[@]}" -DBUILD_TESTING=${BUILD_TESTING}
-cmake --build build
+cmake -B _build -S . -DCHAPTERS="${CHAPTERS[@]}" -DBUILD_TESTING=${BUILD_TESTING}
+cmake --build _build
 
 # Run tests if testing is enabled
 if [ "${BUILD_TESTING}" = "ON" ]; then
-    cd build && ctest --output-on-failure
+    cd _build && ctest --output-on-failure
 fi
 
 
