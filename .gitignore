@@ -1,7 +1,11 @@
 .vscode/
+!.vscode/launch.json
+!.vscode/tasks.json
+
 build/
 */build/
 **/build/
 */_build/
 **/_build/
 tools/docker/.env
+.DS_Store

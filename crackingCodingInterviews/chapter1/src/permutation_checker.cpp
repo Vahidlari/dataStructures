@@ -12,11 +12,11 @@ bool isPermutation_usingCharCount(string s1, string s2) {
     }
 
     int count[128] = {0};
-    for (int i = 0; i < s1.length(); i++) {
-        count[s1[i]]++;
+    for (std::size_t i = 0; i < s1.length(); i++) {
+        count[static_cast<std::size_t>(s1[i])]++;
     }
-    for (int i = 0; i < s2.length(); i++) {
-        count[s2[i]]--;
+    for (std::size_t i = 0; i < s2.length(); i++) {
+        count[static_cast<std::size_t>(s2[i])]--;
     }
     for (int i = 0; i < 128; i++) {
         if (count[i] != 0) {

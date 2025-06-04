@@ -36,4 +36,31 @@
  */
 bool isPalindromicPermutation_usingHashTable(std::string s);
 
-#endif // PALINDROMIC_PERMUTATION_HPP 
+/**
+ * @brief Checks if a string is a permutation of a palindrome using bit manipulation
+ * 
+ * @param s The input string to check
+ * @return true if the string can be rearranged to form a palindrome
+ * @return false if the string cannot be rearranged to form a palindrome
+ */
+bool isPalindromicPermutation_usingBitManipulation(std::string s);
+
+enum class PalindromicPermutationMethod {
+    HashTable,
+    BitManipulation
+};
+
+/**
+ * @brief Checks if a string is a permutation of a palindrome using the specified method that is passed as a template parameter
+ * 
+ * @param s The input string to check
+ * @return true if the string can be rearranged to form a palindrome
+ * @return false if the string cannot be rearranged to form a palindrome
+ */
+
+template <PalindromicPermutationMethod method>
+bool isPalindromicPermutation(std::string s);
+
+#include "chapter1/palindromic_permutation.inl"
+ 
+#endif // PALINDROMIC_PERMUTATION_HPP
