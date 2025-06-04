@@ -30,3 +30,18 @@ bool isPalindromicPermutation_usingHashTable(string s) {
     // A palindrome can have at most one character with odd count
     return true;
 }
+
+bool isPalindromicPermutation_usingBitManipulation(string s) {
+    int bitVector = 0;
+    
+    // Toggle bits for each character (ignoring spaces)
+    for (char c : s) {
+        if (!isspace(c)) {  // Skip spaces
+            int index = tolower(c) - 'a';  // Normalize to lowercase and get index
+            bitVector ^= (1 << index);  // Toggle the bit at the index
+        }
+    }
+    
+    // Check if at most one bit is set in bitVector
+    return (bitVector == 0 || (bitVector & (bitVector - 1)) == 0);
+}

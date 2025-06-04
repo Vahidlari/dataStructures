@@ -75,5 +75,24 @@ bool isPermutation_usingSort(std::string s1, std::string s2);
  */
 bool isPermutation_usingHashTable(std::string s1, std::string s2);
 
+enum class PermutationMethod {
+    CharCount,
+    Sort,
+    HashTable
+};
+/**
+ * @brief Checks if two strings are permutations using the specified method that is passed as a template parameter
+ * 
+ * This function allows the user to choose the method for checking permutations.
+ *
+ * @param s1 First string
+ * @param s2 Second string
+ * @return true if s2 is a permutation of s1
+ * @return false if s2 is not a permutation of s1
+ */
+template <PermutationMethod method>
+bool isPermutation(std::string s1, std::string s2);
+
+#include "chapter1/permutation_checker.inl" // Include the implementation of template functions
 
 #endif // PERMUTATION_CHECKER_HPP 

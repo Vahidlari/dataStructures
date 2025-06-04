@@ -1,0 +1,15 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build-chapter1-tests",
+      "type": "shell",
+      "command": "./build.sh",
+      "args": ["-p", "chapter1", "-t", "-c"],
+      "options": {
+        "cwd": "${workspaceFolder}/crackingCodingInterviews"
+      },
+      "problemMatcher": []
+    }
+  ]
+}
