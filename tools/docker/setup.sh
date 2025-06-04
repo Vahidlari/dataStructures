@@ -44,23 +44,46 @@ if ! docker info > /dev/null 2>&1; then
     exit 1
 fi
 
-echo -e "${GREEN}Building Docker image...${NC}"
-docker-compose build
+echo -e "${YELLOW}What would you like to do?${NC}"
+echo "1. Build Docker image and start container"
+echo "2. Only build Docker image"
+echo "3. Only start container (skip build)"
+echo "4. Skip Docker Compose steps"
+read -p "Enter your choice (1-4): " compose_choice
 
-echo -e "${GREEN}Starting container...${NC}"
-docker-compose up -d
+case $compose_choice in
+    1)
+        echo -e "${GREEN}Building Docker image...${NC}"
+        docker-compose build
+        echo -e "${GREEN}Starting container...${NC}"
+        docker-compose up -d
+        ;;
+    2)
+        echo -e "${GREEN}Building Docker image...${NC}"
+        docker-compose build
+        ;;
+    3)
+        echo -e "${GREEN}Starting container...${NC}"
+        docker-compose up -d
+        ;;
+    *)
+        echo -e "${YELLOW}Skipping Docker Compose build/start steps.${NC}"
+        ;;
+esac
 
-echo -e "${GREEN}Container is ready!${NC}"
+if [ "$compose_choice" = "1" ] || [ "$compose_choice" = "3" ]; then
+    echo -e "${GREEN}Container is ready!${NC}"
 
-# Check if running in VS Code
-if [ -n "$VSCODE_CLI" ] || [ -n "$VSCODE_EXTENSIONS_PATH" ]; then
-    echo -e "${YELLOW}VS Code detected. You can now:${NC}"
-    echo "1. Press F1 or Cmd/Ctrl+Shift+P"
-    echo "2. Type 'Remote-Containers: Reopen in Container'"
-    echo "3. Select the dev container configuration"
-else
-    echo -e "${YELLOW}To access the container:${NC}"
-    echo "docker-compose exec dev bash"
+    # Check if running in VS Code
+    if [ -n "$VSCODE_CLI" ] || [ -n "$VSCODE_EXTENSIONS_PATH" ]; then
+        echo -e "${YELLOW}VS Code detected. You can now:${NC}"
+        echo "1. Press F1 or Cmd/Ctrl+Shift+P"
+        echo "2. Type 'Remote-Containers: Reopen in Container'"
+        echo "3. Select the dev container configuration"
+    else
+        echo -e "${YELLOW}To access the container:${NC}"
+        echo "docker-compose exec dev bash"
+    fi
 fi
 
 # Check if GitHub credentials are configured
@@ -96,4 +119,4 @@ else
     echo -e "\n${YELLOW}To push to GitHub Container Registry:${NC}"
     echo "1. Edit the .env file with your GitHub credentials"
     echo "2. Run this script again"
-fi 
+fi
