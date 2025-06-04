@@ -11,6 +11,11 @@ target_link_libraries(${PROJECT_NAME}_tests
         GTest::gtest_main
 )
 
+# Ensure debug symbols are generated for the test executable
+if (CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+    target_compile_options(${PROJECT_NAME}_tests PRIVATE -g)
+endif()
+
 # Include test directories
 target_include_directories(${PROJECT_NAME}_tests
     PRIVATE
@@ -19,4 +24,4 @@ target_include_directories(${PROJECT_NAME}_tests
 
 # Discover and add tests
 include(GoogleTest)
-gtest_discover_tests(${PROJECT_NAME}_tests) 
+gtest_discover_tests(${PROJECT_NAME}_tests)

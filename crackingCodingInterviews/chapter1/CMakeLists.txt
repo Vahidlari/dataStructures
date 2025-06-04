@@ -6,6 +6,9 @@ cmake_minimum_required(VERSION 3.20.0)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
+# Enable debug symbols for all targets in this directory (and subdirectories)
+set(CMAKE_BUILD_TYPE Debug)
+
 project(chapter1 C CXX)
 
 # Globe source and header files

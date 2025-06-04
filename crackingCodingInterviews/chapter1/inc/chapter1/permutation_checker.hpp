@@ -93,6 +93,6 @@ enum class PermutationMethod {
 template <PermutationMethod method>
 bool isPermutation(std::string s1, std::string s2);
 
-#include "permutation_checker.inl" // Include the implementation of template functions
+#include "chapter1/permutation_checker.inl" // Include the implementation of template functions
 
 #endif // PERMUTATION_CHECKER_HPP 
