@@ -5,11 +5,31 @@
       "label": "build-chapter1-tests",
       "type": "shell",
       "command": "./build.sh",
-      "args": ["-p", "chapter1", "-t", "-c"],
+      "args": [
+        "-p", "chapter1",
+        "-c", "${input:cleanBuild}",
+        "-t", "${input:enableTests}"
+      ],
       "options": {
         "cwd": "${workspaceFolder}/crackingCodingInterviews"
       },
       "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "cleanBuild",
+      "type": "pickString",
+      "description": "Clean build directory?",
+      "options": ["true", "false"],
+      "default": "false"
+    },
+    {
+      "id": "enableTests",
+      "type": "pickString",
+      "description": "Enable testing?",
+      "options": ["true", "false"],
+      "default": "false"
     }
   ]
 }

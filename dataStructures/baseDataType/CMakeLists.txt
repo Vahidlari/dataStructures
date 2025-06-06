@@ -14,7 +14,7 @@ target_include_directories(baseDataType
 )
 
 # Add tests
-if(BUILD_TESTING)
+if(BUILD_DATASTRUCTURES_TESTING)
     add_subdirectory(test)
 endif()
 

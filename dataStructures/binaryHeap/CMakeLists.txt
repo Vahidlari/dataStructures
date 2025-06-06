@@ -19,7 +19,7 @@ target_link_libraries(binaryHeap
 )
 
 # Add tests
-if(BUILD_TESTING)
+if(BUILD_DATASTRUCTURES_TESTING)
     add_subdirectory(test)
 endif()
 

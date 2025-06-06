@@ -32,7 +32,7 @@ target_sources(${PROJECT_NAME}_lib
 set_target_properties(${PROJECT_NAME}_lib PROPERTIES LINKER_LANGUAGE CXX)
 
 # Add the test directory if testing is enabled
-if(BUILD_TESTING)
+if(BUILD_CRACKINGCODINGINTERVIEWS_TESTING)
     add_subdirectory(tests)
 endif()
 

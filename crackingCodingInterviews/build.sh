@@ -16,19 +16,29 @@ DEFAULTCHAPTERS=($(ls -d chapter*))
 BUILD_TESTING=OFF
 CLEAN_BUILD=OFF
 
+# Function to convert binary input to ON/OFF
+to_onoff() {
+    local value=$(echo "$1" | tr '[:upper:]' '[:lower:]')
+    case "$value" in
+        true|1|yes|on) echo "ON" ;;
+        false|0|no|off) echo "OFF" ;;
+        *) echo "Invalid binary value: $1" >&2; exit 1 ;;
+    esac
+}
+
 # Define the usage function
 usage() {
-    echo "Usage: $0 [-h] [-p <chapter>] [-c] [-t]"
+    echo "Usage: $0 [-h] [-p <chapter>] [-c <true|false>] [-t <true|false>]"
     echo "Build the crackingCodingInterviews project"
     echo "Options:"
     echo "  -h, --help     Show this help message and exit"
     echo "  -p, --chapter  Build a specific chapter"
-    echo "  -c, --clean    Clean the build directory"
-    echo "  -t, --test     Enable testing"
+    echo "  -c, --clean    Clean the build directory (accepts: true/false, 1/0, yes/no, on/off)"
+    echo "  -t, --test     Enable testing (accepts: true/false, 1/0, yes/no, on/off)"
 }
 
 # Parse the arguments
-while getopts "hp:ct" opt; do
+while getopts "hp:c:t:" opt; do
     case "$opt" in
         h | --help)
             usage
@@ -43,11 +53,11 @@ while getopts "hp:ct" opt; do
             fi
         ;;
         c | --clean)
-            # Clean the build directory
-            CLEAN_BUILD=ON
+            # Convert binary input to ON/OFF
+            CLEAN_BUILD=$(to_onoff "$OPTARG")
         ;;
         t | --test)
-            BUILD_TESTING=ON
+            BUILD_TESTING=$(to_onoff "$OPTARG")
         ;;
         *)
             usage

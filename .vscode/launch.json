@@ -5,10 +5,10 @@
       "type": "cppdbg",
       "request": "launch",
       "name": "Debug chapter1 executable",
-      "program": "${workspaceFolder}/crackingCodingInterviews/_build/chapter1/tests/chapter1_tests",
+      "program": "${workspaceFolder}/_build/crackingCodingInterviews/chapter1/tests/chapter1_tests",
       "args": [],
       "stopAtEntry": false,
-      "cwd": "${workspaceFolder}/crackingCodingInterviews/_build/chapter1",
+      "cwd": "${workspaceFolder}/_build/crackingCodingInterviews/chapter1",
       "environment": [],
       "externalConsole": false,
       "MIMode": "gdb"
