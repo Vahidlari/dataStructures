@@ -8,6 +8,26 @@ project(crackingCodingInterviews C CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+# Get all chapter directories
+file(GLOB COMPONENT_DIRS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} chapter*/CMakeLists.txt)
+list(TRANSFORM COMPONENT_DIRS REPLACE "/CMakeLists.txt" "")
+
+# Component selection logic
+if(SELECTED_COMPONENT)
+    if(NOT SELECTED_COMPONENT IN_LIST COMPONENT_DIRS)
+        message(FATAL_ERROR "Invalid component selected: ${SELECTED_COMPONENT}. Available components: ${COMPONENT_DIRS}")
+    endif()
+    message(STATUS "Building component: ${SELECTED_COMPONENT}")
+    add_subdirectory(${SELECTED_COMPONENT})
+    add_compile_definitions(ENABLE_CHAPTER_${SELECTED_COMPONENT})
+else()
+    message(STATUS "Building all components in ${CMAKE_CURRENT_SOURCE_DIR}")
+    foreach(component ${COMPONENT_DIRS})
+        add_subdirectory(${component})
+        add_compile_definitions(ENABLE_CHAPTER_${component})
+    endforeach()
+endif()
+
 # Add option for building tests
 option(BUILD_TESTING "Build the testing tree." OFF)
 
@@ -29,10 +49,3 @@ if(BUILD_TESTING)
     # Enable testing
     enable_testing()
 endif()
-
-# Add subdirectories for each chapter based on a Cmake variable called CHAPTERS
-foreach(CHAPTER ${CHAPTERS})
-    add_subdirectory(${CHAPTER})
-    # Add a compile switch for the chapter. This switch is used to enable the test functions for the chapter in the main function
-    add_compile_options(-DENABLE_CHAPTER_${CHAPTER})
-endforeach()
