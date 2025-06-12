@@ -1,5 +1,5 @@
-#ifndef BINARYHEAP_INCLUDED_H
-#define BINARYHEAP_INCLUDED_H
+#ifndef BINARYHEAP_INCLUDED_
+#define BINARYHEAP_INCLUDED_
 
 #include "dataStructures/baseDataType.hpp"
 
@@ -66,4 +66,4 @@ protected:
 
 #include "dataStructures/binaryHeap.inl"
 
-#endif //BINARYHEAP_INCLUDED_H
+#endif //BINARYHEAP_INCLUDED_

@@ -9,6 +9,13 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 # Enable testing
 enable_testing()
 
+# Set debug flags when testing is enabled
+if(BUILD_TESTING)
+    message(STATUS "Setting debug flags for test builds")
+    set(CMAKE_BUILD_TYPE Debug CACHE STRING "Set build type to Debug when testing" FORCE)
+    add_compile_options(-g3 -O0)
+endif()
+
 # Include FetchContent for downloading dependencies
 include(FetchContent)
 
