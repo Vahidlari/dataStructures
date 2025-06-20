@@ -13,7 +13,13 @@
                 "ms-vscode.cpptools-extension-pack"
             ],
             "settings": {
-                "terminal.integrated.defaultProfile.linux": "bash",
+                "terminal.integrated.defaultProfile.linux": "zsh",
+                "terminal.integrated.profiles.linux": {
+                    "zsh": {
+                        "path": "/usr/bin/zsh",
+                        "args": []
+                    }
+                },
                 "python.defaultInterpreterPath": "/usr/bin/python3"
             }
         }
