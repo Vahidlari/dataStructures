@@ -6,19 +6,51 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
+# Enable ccache for faster builds
+find_program(CCACHE_PROGRAM ccache)
+if(CCACHE_PROGRAM)
+    set(CMAKE_CXX_COMPILER_LAUNCHER ${CCACHE_PROGRAM})
+    message(STATUS "ccache found and enabled: ${CCACHE_PROGRAM}")
+else()
+    message(STATUS "ccache not found, builds will not be cached")
+endif()
+
 # Enable testing
 enable_testing()
 
 # Include FetchContent for downloading dependencies
 include(FetchContent)
 
-# Fetch and make Google Test available
-FetchContent_Declare(
-    googletest
-    GIT_REPOSITORY https://github.com/google/googletest.git
-    GIT_TAG release-1.12.1
-)
-FetchContent_MakeAvailable(googletest)
+# Only fetch GoogleTest if testing is enabled
+if(BUILD_TESTING)
+    # Fetch and make Google Test available with enhanced caching
+    FetchContent_Declare(
+        googletest
+        GIT_REPOSITORY https://github.com/google/googletest.git
+        GIT_TAG release-1.12.1
+        # Enhanced caching options to improve performance
+        GIT_SHALLOW TRUE  # Only fetch the specific tag, not full history
+        GIT_PROGRESS TRUE # Show progress during download
+        GIT_SUBMODULES "" # Don't fetch submodules
+    )
+    
+    # Configure GoogleTest to avoid rebuilding
+    set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+    set(BUILD_GMOCK ON CACHE BOOL "" FORCE)
+    set(INSTALL_GTEST OFF CACHE BOOL "" FORCE)
+    set(BUILD_SHARED_LIBS OFF CACHE BOOL "" FORCE)
+    
+    # Only make available if not already available
+    FetchContent_GetProperties(googletest)
+    if(NOT googletest_POPULATED)
+        message(STATUS "Fetching GoogleTest...")
+        FetchContent_Populate(googletest)
+        add_subdirectory(${googletest_SOURCE_DIR} ${googletest_BINARY_DIR})
+        message(STATUS "GoogleTest fetched and configured")
+    else()
+        message(STATUS "GoogleTest already available, skipping fetch")
+    endif()
+endif()
 
 # Add compiler warnings
 if(MSVC)

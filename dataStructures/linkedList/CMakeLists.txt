@@ -16,6 +16,7 @@ target_include_directories(linkedList
 
 # Add tests
 if(BUILD_DATASTRUCTURES_TESTING)
+    enable_testing()
     add_subdirectory(test)
 endif()
 
