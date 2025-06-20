@@ -4,14 +4,42 @@
     {
       "type": "cppdbg",
       "request": "launch",
-      "name": "Debug chapter1 executable",
-      "program": "${workspaceFolder}/_build/crackingCodingInterviews/chapter1/tests/chapter1_tests",
+      "name": "Debug Cracking Coding Interviews executable",
+      "program": "${workspaceFolder}/_build/crackingCodingInterviews/${input:codingProblemsComponent}/tests/${input:codingProblemsComponent}_tests",
       "args": [],
       "stopAtEntry": false,
-      "cwd": "${workspaceFolder}/_build/crackingCodingInterviews/chapter1",
+      "cwd": "${workspaceFolder}/_build/crackingCodingInterviews/${input:codingProblemsComponent}",
       "environment": [],
       "externalConsole": false,
       "MIMode": "gdb"
+    }, 
+    {
+      "type": "cppdbg",
+      "request": "launch",
+      "name": "Debug dataStructures ${input:dataStructuresComponent}",
+      "program": "${workspaceFolder}/_build/dataStructures/${input:dataStructuresComponent}/test/${input:dataStructuresComponent}_test",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}/_build/dataStructures/${input:dataStructuresComponent}",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "gdb"
+    }
+  ],
+  "inputs": [
+    {
+      "id": "dataStructuresComponent",
+      "type": "pickString",
+      "description": "Select dataStructures component",
+      "options": ["linkedList", "binaryHeap", "binarySearchTree", "baseDataType"],
+      "default": "linkedList"
+    }, 
+    {
+      "id": "codingProblemsComponent",
+      "type": "pickString",
+      "description": "Select codingProblems component",
+      "options": ["chapter1", "chapter2"],
+      "default": "chapter1"
     }
   ]
 }

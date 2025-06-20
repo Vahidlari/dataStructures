@@ -2,16 +2,64 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "build-chapter1-tests",
+      "label": "build-crackingCodingInterviews-component",
       "type": "shell",
-      "command": "./build.sh",
+      "command": "${workspaceFolder}/build.sh",
       "args": [
-        "-p", "chapter1",
+        "-p", "crackingCodingInterviews",
+        "-m", "${input:codingProblemsComponent}",
         "-c", "${input:cleanBuild}",
-        "-t", "${input:enableTests}"
+        "-t", "${input:enableTests}",
+        "-d", "${input:debug}"
       ],
       "options": {
-        "cwd": "${workspaceFolder}/crackingCodingInterviews"
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "build-crackingCodingInterviews-all",
+      "type": "shell",
+      "command": "${workspaceFolder}/build.sh",
+      "args": [
+        "-p", "crackingCodingInterviews",
+        "-c", "${input:cleanBuild}",
+        "-t", "${input:enableTests}",
+        "-d", "${input:debug}"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "build-dataStructures-component",
+      "type": "shell",
+      "command": "${workspaceFolder}/build.sh",
+      "args": [
+        "-p", "dataStructures",
+        "-m", "${input:dataStructuresComponent}",
+        "-c", "${input:cleanBuild}",
+        "-t", "${input:enableTests}",
+        "-d", "${input:debug}"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "build-dataStructures-all",
+      "type": "shell",
+      "command": "${workspaceFolder}/build.sh",
+      "args": [
+        "-p", "dataStructures",
+        "-c", "${input:cleanBuild}",
+        "-t", "${input:enableTests}",
+        "-d", "${input:debug}"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
       },
       "problemMatcher": []
     }
@@ -30,6 +78,27 @@
       "description": "Enable testing?",
       "options": ["true", "false"],
       "default": "false"
+    },
+    {
+      "id": "codingProblemsComponent",
+      "type": "pickString",
+      "description": "Select codingProblems component",
+      "options": ["chapter1", "chapter2"],
+      "default": "chapter1"
+    },
+    {
+      "id": "dataStructuresComponent",
+      "type": "pickString",
+      "description": "Select dataStructures component",
+      "options": ["linkedList", "binaryHeap", "binarySearchTree", "baseDataType"],
+      "default": "linkedList"
+    },
+    {
+      "id": "debug",
+      "type": "pickString",
+      "description": "Build type:",
+      "options": ["Debug", "Release"],
+      "default": "Debug"
     }
   ]
 }
