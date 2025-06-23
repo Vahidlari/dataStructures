@@ -11,6 +11,29 @@ CSinglyLinkedList<Ttype>::~CSinglyLinkedList() {
 }
 
 template <typename Ttype>
+CSinglyLinkedList<Ttype>::CSinglyLinkedList(const CSinglyLinkedList& other)
+    : head(nullptr), tail(nullptr), count(0) {
+    node_ptr_t current = other.head;
+    while (current != nullptr) {
+        pushBack(current->getData());
+        current = current->getNext();
+    }
+}
+
+template <typename Ttype>
+CSinglyLinkedList<Ttype>& CSinglyLinkedList<Ttype>::operator=(const CSinglyLinkedList& other) {
+    if (this != &other) {
+        clear();
+        node_ptr_t current = other.head;
+        while (current != nullptr) {
+            pushBack(current->getData());
+            current = current->getNext();
+        }
+    }
+    return *this;
+}
+
+template <typename Ttype>
 void CSinglyLinkedList<Ttype>::pushFront(const data_t& value) {
     node_ptr_t newNode = new node_t(value);
     newNode->setNext(head);

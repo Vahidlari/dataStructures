@@ -19,9 +19,22 @@ public:
     CSinglyLinkedList(); 
 
     /**
+     * @brief Copy Constructor
+     * @param other The other list to copy from
+     */
+    CSinglyLinkedList(const CSinglyLinkedList& other);
+
+    /**
      * @brief Default destructor
      */
     ~CSinglyLinkedList();
+
+    /**
+     * @brief Assignment operator
+     * @param other The other list to assign from
+     * @return Reference to this list
+     */
+    CSinglyLinkedList& operator=(const CSinglyLinkedList& other);
 
     /**
      * @brief Adds a new element to the front of the list
