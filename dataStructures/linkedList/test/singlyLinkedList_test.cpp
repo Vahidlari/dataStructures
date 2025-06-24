@@ -114,6 +114,16 @@ TEST_F(SinglyLinkedListTest, Insert) {
     EXPECT_EQ(list->at(3), 1);
 }
 
+TEST_F(SinglyLinkedListTest, EquityOperator) {
+    dataStructures::CSinglyLinkedList<int> list2;
+    list2.pushFront(1);
+    list2.pushFront(2);
+    list2.pushFront(3);
+    
+    EXPECT_EQ(*list, *list); // Self comparison
+    EXPECT_NE(*list, list2); // Different lists
+}
+
 TEST_F(SinglyLinkedListTest, Destructor) {
     // Create a new list in this scope
     auto* tempList = new dataStructures::CSinglyLinkedList<int>();

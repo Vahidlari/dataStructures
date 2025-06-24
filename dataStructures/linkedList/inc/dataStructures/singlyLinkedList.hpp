@@ -37,6 +37,21 @@ public:
     CSinglyLinkedList& operator=(const CSinglyLinkedList& other);
 
     /**
+     * @brief Equality operator
+     * @param other The other list to compare with
+     * @return true if both lists are equal, false otherwise
+     * @note Two lists are considered equal if they have the same elements in the same order
+     */
+    bool operator==(const CSinglyLinkedList& other) const;
+
+    /**
+     * @brief Inequality operator
+     * @param other The other list to compare with
+     * @return true if both lists are not equal, false otherwise
+     */
+    bool operator!=(const CSinglyLinkedList& other) const;
+
+    /**
      * @brief Adds a new element to the front of the list
      * @param value The value to add
      */
