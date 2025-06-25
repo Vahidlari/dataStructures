@@ -5,11 +5,14 @@ class SinglyLinkedListTest : public ::testing::Test {
 protected:
     void SetUp() override {
         list = new dataStructures::CSinglyLinkedList<int>();
+        share_ptr_list = new dataStructures::CSinglyLinkedList<int, std::shared_ptr>();
     }
     void TearDown() override {
         delete list;
+        delete share_ptr_list;
     }
     dataStructures::CSinglyLinkedList<int>* list;
+    dataStructures::CSinglyLinkedList<int, std::shared_ptr>* share_ptr_list;
 };
 
 TEST_F(SinglyLinkedListTest, DefaultConstructor) {
@@ -24,11 +27,25 @@ TEST_F(SinglyLinkedListTest, PushFront) {
     EXPECT_EQ(list->at(0), 1);
 }
 
+TEST_F(SinglyLinkedListTest, PushFrontSharedPtr) {
+    share_ptr_list->pushFront(1);
+    EXPECT_FALSE(share_ptr_list->empty());
+    EXPECT_EQ(share_ptr_list->size(), 1);
+    EXPECT_EQ(share_ptr_list->at(0), 1);
+}
+
 TEST_F(SinglyLinkedListTest, PushBack) {
     list->pushBack(1);
     EXPECT_FALSE(list->empty());
     EXPECT_EQ(list->size(), 1);
     EXPECT_EQ(list->at(0), 1);
+}
+
+TEST_F(SinglyLinkedListTest, PushBackSharedPtr) {
+    share_ptr_list->pushBack(1);
+    EXPECT_FALSE(share_ptr_list->empty());
+    EXPECT_EQ(share_ptr_list->size(), 1);
+    EXPECT_EQ(share_ptr_list->at(0), 1);
 }
 
 TEST_F(SinglyLinkedListTest, PopFront) {
@@ -38,11 +55,35 @@ TEST_F(SinglyLinkedListTest, PopFront) {
     EXPECT_EQ(list->size(), 0);
 }
 
+TEST_F(SinglyLinkedListTest, PopFrontSharedPtr) {
+    share_ptr_list->pushFront(1);
+    EXPECT_EQ(share_ptr_list->popFront(), 1);
+    EXPECT_TRUE(share_ptr_list->empty());
+    EXPECT_EQ(share_ptr_list->size(), 0);
+}
+
+TEST_F(SinglyLinkedListTest, PopBackSharedPtr) {
+    share_ptr_list->pushBack(1);
+    EXPECT_EQ(share_ptr_list->popBack(), 1);
+    EXPECT_TRUE(share_ptr_list->empty());
+    EXPECT_EQ(share_ptr_list->size(), 0);
+}
+
 TEST_F(SinglyLinkedListTest, PopBack) {
     list->pushBack(1);
     EXPECT_EQ(list->popBack(), 1);
     EXPECT_TRUE(list->empty());
     EXPECT_EQ(list->size(), 0);
+}
+
+TEST_F(SinglyLinkedListTest, RemoveSharedPtr) {
+    share_ptr_list->pushFront(1);
+    share_ptr_list->pushFront(2);
+    share_ptr_list->pushFront(3);
+    EXPECT_TRUE(share_ptr_list->remove(2));
+    EXPECT_EQ(share_ptr_list->size(), 2);
+    EXPECT_EQ(share_ptr_list->at(0), 3);
+    EXPECT_EQ(share_ptr_list->at(1), 1);
 }
 
 TEST_F(SinglyLinkedListTest, Remove) {
@@ -92,6 +133,15 @@ TEST_F(SinglyLinkedListTest, Reverse) {
     EXPECT_EQ(list->at(0), 1);
     EXPECT_EQ(list->at(1), 2);
     EXPECT_EQ(list->at(2), 3);
+}
+
+TEST_F(SinglyLinkedListTest, ClearSharedPtr) {
+    share_ptr_list->pushFront(1);
+    share_ptr_list->pushFront(2);
+    share_ptr_list->pushFront(3);
+    share_ptr_list->clear();
+    EXPECT_TRUE(share_ptr_list->empty());
+    EXPECT_EQ(share_ptr_list->size(), 0);
 }
 
 TEST_F(SinglyLinkedListTest, Clear) {

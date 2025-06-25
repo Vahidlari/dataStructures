@@ -2,8 +2,8 @@
 
 namespace dataStructures
 {
-template<typename Ttype>
-CLinkedNode<Ttype>& CLinkedNode<Ttype>::operator=(const CLinkedNode<Ttype>& other){
+template<typename Ttype, template<typename> class PtrType>
+CLinkedNode<Ttype, PtrType>& CLinkedNode<Ttype, PtrType>::operator=(const CLinkedNode<Ttype, PtrType>& other){
     if (this != &other) {
         data = other.data;
         next = other.next;
@@ -12,38 +12,38 @@ CLinkedNode<Ttype>& CLinkedNode<Ttype>::operator=(const CLinkedNode<Ttype>& othe
     return *this;
 }
 
-template<typename Ttype>
-inline const Ttype& CLinkedNode<Ttype>::getData() const{
+template<typename Ttype, template<typename> class PtrType>
+inline const Ttype& CLinkedNode<Ttype, PtrType>::getData() const{
     return data;
 }
 
-template<typename Ttype>
-inline void CLinkedNode<Ttype>::setData(Ttype _data){
+template<typename Ttype, template<typename> class PtrType>
+inline void CLinkedNode<Ttype, PtrType>::setData(Ttype _data){
     data = _data;
 }
 
-template<typename Ttype>
-inline CLinkedNode<Ttype>* CLinkedNode<Ttype>::getNext() const{
+template<typename Ttype, template<typename> class PtrType>
+inline typename CLinkedNode<Ttype, PtrType>::node_ptr_t CLinkedNode<Ttype, PtrType>::getNext() const{
     return next;
 }
 
-template<typename Ttype>
-inline void CLinkedNode<Ttype>::setNext(CLinkedNode<Ttype>* _next){
+template<typename Ttype, template<typename> class PtrType>
+inline void CLinkedNode<Ttype, PtrType>::setNext(node_ptr_t _next){
     next = _next;
 }
 
-template<typename Ttype>
-inline CLinkedNode<Ttype>* CLinkedNode<Ttype>::getPrevious() const{
+template<typename Ttype, template<typename> class PtrType>
+inline typename CLinkedNode<Ttype, PtrType>::node_ptr_t CLinkedNode<Ttype, PtrType>::getPrevious() const{
     return previous;
 }
 
-template<typename Ttype>
-inline void CLinkedNode<Ttype>::setPrevious(CLinkedNode<Ttype>* _previous){
+template<typename Ttype, template<typename> class PtrType>
+inline void CLinkedNode<Ttype, PtrType>::setPrevious(node_ptr_t _previous){
     previous = _previous;
 }
 
-template<typename Ttype>
-inline void CLinkedNode<Ttype>::print() const{
+template<typename Ttype, template<typename> class PtrType>
+inline void CLinkedNode<Ttype, PtrType>::print() const{
     std::cout << "Data: " << data << std::endl;
 }
 

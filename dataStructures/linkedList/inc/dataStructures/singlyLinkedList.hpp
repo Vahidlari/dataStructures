@@ -5,12 +5,21 @@
 
 namespace dataStructures {
 
-template <typename Ttype>
+/**
+    * @brief A singly linked list that can store elements of type Ttype.
+    * @tparam Ttype The type of the data in the linked list.
+    * @tparam PtrType The type of pointer used to manage node ownership (default is raw pointer).
+    * @note This class implements a singly linked list with basic operations such as push, pop, remove, and search.
+    * @note Nodes are linked using raw pointers, and the list does not support shared ownership of nodes.
+    * @note The list does not support concurrent access, so it is not thread-safe.
+    * @note The list does not support memory management, so it is the user's responsibility to manage the memory of the nodes.
+ */
+template <typename Ttype, template<typename> class PtrType = dataStructures::raw_ptr>
 class CSinglyLinkedList {
 public:
     using data_t = Ttype;
-    using node_t = CLinkedNode<data_t>;
-    using node_ptr_t = node_t*;
+    using node_t = typename CLinkedNode<data_t, PtrType>::node_t;
+    using node_ptr_t = typename node_t::node_ptr_t;
     using size_t = std::size_t;
 
     /**

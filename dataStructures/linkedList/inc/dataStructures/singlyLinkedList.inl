@@ -2,16 +2,16 @@
 
 namespace dataStructures {
 
-template <typename Ttype>
-CSinglyLinkedList<Ttype>::CSinglyLinkedList() : head(nullptr), tail(nullptr), count(0) {}
+template <typename Ttype, template<typename> class PtrType>
+CSinglyLinkedList<Ttype, PtrType>::CSinglyLinkedList() : head(nullptr), tail(nullptr), count(0) {}
 
-template <typename Ttype>
-CSinglyLinkedList<Ttype>::~CSinglyLinkedList() {
+template <typename Ttype, template<typename> class PtrType>
+CSinglyLinkedList<Ttype, PtrType>::~CSinglyLinkedList() {
     clear();
 }
 
-template <typename Ttype>
-CSinglyLinkedList<Ttype>::CSinglyLinkedList(const CSinglyLinkedList& other)
+template <typename Ttype, template<typename> class PtrType>
+CSinglyLinkedList<Ttype, PtrType>::CSinglyLinkedList(const CSinglyLinkedList& other)
     : head(nullptr), tail(nullptr), count(0) {
     node_ptr_t current = other.head;
     while (current != nullptr) {
@@ -20,8 +20,8 @@ CSinglyLinkedList<Ttype>::CSinglyLinkedList(const CSinglyLinkedList& other)
     }
 }
 
-template <typename Ttype>
-CSinglyLinkedList<Ttype>& CSinglyLinkedList<Ttype>::operator=(const CSinglyLinkedList& other) {
+template <typename Ttype, template<typename> class PtrType>
+CSinglyLinkedList<Ttype, PtrType>& CSinglyLinkedList<Ttype, PtrType>::operator=(const CSinglyLinkedList& other) {
     if (this != &other) {
         clear();
         node_ptr_t current = other.head;
@@ -33,9 +33,9 @@ CSinglyLinkedList<Ttype>& CSinglyLinkedList<Ttype>::operator=(const CSinglyLinke
     return *this;
 }
 
-template <typename Ttype>
-void CSinglyLinkedList<Ttype>::pushFront(const data_t& value) {
-    node_ptr_t newNode = new node_t(value);
+template <typename Ttype, template<typename> class PtrType>
+void CSinglyLinkedList<Ttype, PtrType>::pushFront(const data_t& value) {
+    node_ptr_t newNode = PtrType<node_t>(new node_t(value));
     newNode->setNext(head);
     head = newNode;
     
@@ -45,9 +45,9 @@ void CSinglyLinkedList<Ttype>::pushFront(const data_t& value) {
     count++;
 }
 
-template <typename Ttype>
-void CSinglyLinkedList<Ttype>::pushBack(const data_t& value) {
-    node_ptr_t newNode = new node_t(value);
+template <typename Ttype, template<typename> class PtrType>
+void CSinglyLinkedList<Ttype, PtrType>::pushBack(const data_t& value) {
+    node_ptr_t newNode = PtrType<node_t>(new node_t(value));
 
     if (head == nullptr) {
         head = tail = newNode;
@@ -58,8 +58,9 @@ void CSinglyLinkedList<Ttype>::pushBack(const data_t& value) {
     count++;
 }
 
-template <typename Ttype>
-typename CSinglyLinkedList<Ttype>::data_t CSinglyLinkedList<Ttype>::popFront() {
+
+template <typename Ttype, template<typename> class PtrType>
+typename CSinglyLinkedList<Ttype, PtrType>::data_t CSinglyLinkedList<Ttype, PtrType>::popFront() {
     if (head == nullptr) {
         throw std::runtime_error("List is empty!");
     }
@@ -75,8 +76,8 @@ typename CSinglyLinkedList<Ttype>::data_t CSinglyLinkedList<Ttype>::popFront() {
     return headValue;
 }
 
-template <typename Ttype>
-auto CSinglyLinkedList<Ttype>::popBack() -> data_t {
+template <typename Ttype, template<typename> class PtrType>
+auto CSinglyLinkedList<Ttype, PtrType>::popBack() -> data_t {
     if(head == nullptr) {
         throw std::runtime_error("List is empty!");
     }
@@ -84,14 +85,21 @@ auto CSinglyLinkedList<Ttype>::popBack() -> data_t {
     data_t tailValue = tail->getData();
     if(tail == head) {
         // The list has a single element
-        delete tail;
+        if constexpr (std::is_same_v<PtrType<node_t>, dataStructures::raw_ptr<node_t>>) {
+            // If using raw pointers, we need to delete it manually
+            delete tail;
+        }
         head = tail = nullptr;
     } else {
         node_ptr_t oneButLastNode = head;
         while(oneButLastNode->getNext() != tail) {
             oneButLastNode = oneButLastNode->getNext();
         }
-        delete tail;
+        if constexpr (std::is_same_v<PtrType<node_t>, dataStructures::raw_ptr<node_t>>) {
+            // If using raw pointers, we need to delete it manually
+            delete tail;
+        }
+
         tail = oneButLastNode;
         tail->setNext(nullptr);
     }
@@ -99,8 +107,8 @@ auto CSinglyLinkedList<Ttype>::popBack() -> data_t {
     return tailValue;
 }
 
-template <typename Ttype>
-bool CSinglyLinkedList<Ttype>::remove(const data_t& value) {
+template <typename Ttype, template<typename> class PtrType>
+bool CSinglyLinkedList<Ttype, PtrType>::remove(const data_t& value) {
     if(head == nullptr) {
         return false;
     }
@@ -133,14 +141,17 @@ bool CSinglyLinkedList<Ttype>::remove(const data_t& value) {
         } else {
             previousNode->setNext(currentNode->getNext());
         }
-        delete currentNode;
+        if constexpr (std::is_same_v<PtrType<node_t>, dataStructures::raw_ptr<node_t>>) {
+            // If using raw pointers, we need to delete it manually
+            delete currentNode;
+        }
         count--;
     }
     return found;
 }
 
-template <typename Ttype>
-auto CSinglyLinkedList<Ttype>::at(size_t position) const -> const data_t& {
+template <typename Ttype, template<typename> class PtrType>
+auto CSinglyLinkedList<Ttype, PtrType>::at(size_t position) const -> const data_t& {
     if (position >= count) {
         throw std::out_of_range("Position out of range");
     }
@@ -153,8 +164,8 @@ auto CSinglyLinkedList<Ttype>::at(size_t position) const -> const data_t& {
     return value;
 }
 
-template <typename Ttype>
-bool CSinglyLinkedList<Ttype>::contains(const data_t& value) const {
+template <typename Ttype, template<typename> class PtrType>
+bool CSinglyLinkedList<Ttype, PtrType>::contains(const data_t& value) const {
     if(head == nullptr) {
         return false;
     }
@@ -170,18 +181,18 @@ bool CSinglyLinkedList<Ttype>::contains(const data_t& value) const {
     return found;
 }
 
-template <typename Ttype>
-inline auto CSinglyLinkedList<Ttype>::size() const -> size_t {
+template <typename Ttype, template<typename> class PtrType>
+inline auto CSinglyLinkedList<Ttype, PtrType>::size() const -> size_t {
     return count;
 }
 
-template <typename Ttype>
-inline bool CSinglyLinkedList<Ttype>::empty() const {
+template <typename Ttype, template<typename> class PtrType>
+inline bool CSinglyLinkedList<Ttype, PtrType>::empty() const {
     return (head == nullptr || count == 0);
 }
 
-template <typename Ttype>
-void CSinglyLinkedList<Ttype>::reverse() {
+template <typename Ttype, template<typename> class PtrType>
+void CSinglyLinkedList<Ttype, PtrType>::reverse() {
     if (head == tail) {
         return;
     }
@@ -198,29 +209,47 @@ void CSinglyLinkedList<Ttype>::reverse() {
     head = prev;
 }
 
-template <typename Ttype>
-void CSinglyLinkedList<Ttype>::clear() {
+template <typename Ttype, template<typename> class PtrType>
+void CSinglyLinkedList<Ttype, PtrType>::clear() {
     if (head == nullptr) {
         return;
     }
 
-    node_ptr_t current = head;
-    while(current != nullptr) {
-        node_ptr_t temp = current;
-        current = current->getNext();
-        delete temp;
+    if constexpr (std::is_same_v<PtrType<node_t>, dataStructures::raw_ptr<node_t>>) {
+        // If using raw pointers, we need to delete them manually
+        node_ptr_t current = head;
+        while(current != nullptr) {
+            node_ptr_t temp = current;
+            current = current->getNext();
+            delete temp;
+        }
+        head = tail = nullptr;
+        count = 0;
+    } else {
+        // If using smart pointers, they will be automatically cleaned up
+        head.reset();
+        tail.reset();
+        count = 0;
+        return;
     }
-    head = tail = nullptr;
-    count = 0;
+
 }
 
-template <typename Ttype>
-void CSinglyLinkedList<Ttype>::insert(size_t position, const data_t& value) {
+template <typename Ttype, template<typename> class PtrType>
+void CSinglyLinkedList<Ttype, PtrType>::insert(size_t position, const data_t& value) {
     if(position > count) {
         throw std::out_of_range("Position out of range");
     }
 
-    node_ptr_t newNode = new node_t(value);
+    
+    node_ptr_t newNode;
+    if constexpr (std::is_same_v<PtrType<node_t>, dataStructures::raw_ptr<node_t>>) {
+        // If using raw pointers, we need to allocate memory manually
+        newNode = new node_t(value);
+    } else {
+        // If using smart pointers, we can use make_shared or make_unique
+        newNode = PtrType<node_t>::make_shared(value);
+    }
     if(position == 0) {
         newNode->setNext(head);
         head = newNode;
@@ -238,8 +267,8 @@ void CSinglyLinkedList<Ttype>::insert(size_t position, const data_t& value) {
     count++;
 }
 
-template <typename Ttype>
-bool CSinglyLinkedList<Ttype>::operator==(const CSinglyLinkedList& other) const {
+template <typename Ttype, template<typename> class PtrType>
+bool CSinglyLinkedList<Ttype, PtrType>::operator==(const CSinglyLinkedList& other) const {
     if (count != other.count) {
         return false;
     }
@@ -258,8 +287,8 @@ bool CSinglyLinkedList<Ttype>::operator==(const CSinglyLinkedList& other) const 
     return true; // Both lists are equal
 }
 
-template <typename Ttype>
-bool CSinglyLinkedList<Ttype>::operator!=(const CSinglyLinkedList& other) const {
+template <typename Ttype, template<typename> class PtrType>
+bool CSinglyLinkedList<Ttype, PtrType>::operator!=(const CSinglyLinkedList& other) const {
     return !(*this == other); // Use the equality operator to determine inequality
 }
 

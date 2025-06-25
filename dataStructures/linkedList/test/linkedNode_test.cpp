@@ -45,17 +45,29 @@ TEST_F(BaseSingleLinkedNodeTest, SetData) {
 }
 
 TEST_F(BaseSingleLinkedNodeTest, GetSetNext) {
-    dataStructures::CLinkedNode<int> node(42);
-    dataStructures::CLinkedNode<int> node2(43);
-    node.setNext(&node2);
-    EXPECT_EQ(node.getNext(), &node2);
+    dataStructures::CLinkedNode<int, std::shared_ptr> node(42);
+    dataStructures::CLinkedNode<int, std::shared_ptr> node2(43);
+    auto nextPtr = std::make_shared<dataStructures::CLinkedNode<int, std::shared_ptr>>(node2);
+    node.setNext(nextPtr);
+    EXPECT_EQ(node.getNext(), nextPtr);
+    EXPECT_EQ(node.getNext()->getData(), 43);
 }
 
 TEST_F(BaseSingleLinkedNodeTest, GetSetPrevious) {
-    dataStructures::CLinkedNode<int> node(42);
-    dataStructures::CLinkedNode<int> node2(43);
-    node.setPrevious(&node2);
-    EXPECT_EQ(node.getPrevious(), &node2);
+    dataStructures::CLinkedNode<int, std::shared_ptr> node(42);
+    dataStructures::CLinkedNode<int, std::shared_ptr> node2(43);
+    auto prevPtr = std::make_shared<dataStructures::CLinkedNode<int, std::shared_ptr>>(node2);
+    node.setPrevious(prevPtr);
+    EXPECT_EQ(node.getPrevious(), prevPtr);
+    EXPECT_EQ(node.getPrevious()->getData(), 43);
+}
+
+TEST_F(BaseSingleLinkedNodeTest, GetSetNextAsRawPointer) {
+    dataStructures::CLinkedNode<int, dataStructures::raw_ptr> node(42);
+    dataStructures::CLinkedNode<int, dataStructures::raw_ptr> node2(43);
+    node.setNext(&node2);
+    EXPECT_EQ(node.getNext(), &node2);
+    EXPECT_EQ(node.getNext()->getData(), 43);
 }
 
 
