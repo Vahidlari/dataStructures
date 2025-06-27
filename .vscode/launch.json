@@ -31,8 +31,8 @@
       "id": "dataStructuresComponent",
       "type": "pickString",
       "description": "Select dataStructures component",
-      "options": ["linkedList", "binaryHeap", "binarySearchTree", "baseDataType"],
-      "default": "linkedList"
+      "options": ["linkedList", "stack", "binaryHeap", "binarySearchTree", "baseDataType"],
+      "default": "stack"
     }, 
     {
       "id": "codingProblemsComponent",
