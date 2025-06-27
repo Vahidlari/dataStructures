@@ -90,7 +90,7 @@
       "id": "dataStructuresComponent",
       "type": "pickString",
       "description": "Select dataStructures component",
-      "options": ["linkedList", "binaryHeap", "binarySearchTree", "baseDataType"],
+      "options": ["linkedList", "stack", "binaryHeap", "binarySearchTree", "baseDataType"],
       "default": "linkedList"
     },
     {

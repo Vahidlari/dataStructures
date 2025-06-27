@@ -65,7 +65,7 @@ set(SELECTED_PROJECT "" CACHE STRING "Selected project to build")
 set(SELECTED_COMPONENT "" CACHE STRING "Selected component to build")
 
 # Project-specific component definitions
-set(DATASTRUCTURES_COMPONENTS linkedList binarySearchTree binaryHeap baseDataType)
+set(DATASTRUCTURES_COMPONENTS linkedList binarySearchTree binaryHeap baseDataType stack)
 set(CRACKINGCODINGINTERVIEWS_COMPONENTS chapter1 chapter2)
 
 # Validate selected project if one is specified
