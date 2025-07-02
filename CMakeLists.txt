@@ -66,7 +66,7 @@ set(SELECTED_COMPONENT "" CACHE STRING "Selected component to build")
 
 # Project-specific component definitions
 set(DATASTRUCTURES_COMPONENTS linkedList binarySearchTree binaryHeap baseDataType stack)
-set(CRACKINGCODINGINTERVIEWS_COMPONENTS chapter1 chapter2)
+set(CRACKINGCODINGINTERVIEWS_COMPONENTS chapter1 chapter2 chapter3)
 
 # Validate selected project if one is specified
 if(SELECTED_PROJECT)
@@ -107,19 +107,20 @@ endif()
 
 # Add selected projects with dependency handling
 if(SELECTED_PROJECT)
-    # Handle cross-project dependencies
-    if(SELECTED_PROJECT STREQUAL "crackingCodingInterviews" AND (SELECTED_COMPONENT STREQUAL "chapter2" OR SELECTED_COMPONENT STREQUAL ""))
-        message(STATUS "Chapter2 requires dataStructures::linkedList, adding dataStructures project")
-        # Set project-specific component variables
-        set(DATASTRUCTURES_SELECTED_COMPONENT "linkedList" CACHE STRING "Selected dataStructures component" FORCE)
+    # Set project-specific component variables for single project builds
+    if(SELECTED_PROJECT STREQUAL "dataStructures")
+        set(DATASTRUCTURES_SELECTED_COMPONENT ${SELECTED_COMPONENT} CACHE STRING "Selected dataStructures component" FORCE)
+    elseif(SELECTED_PROJECT STREQUAL "crackingCodingInterviews")
         set(CRACKINGCODINGINTERVIEWS_SELECTED_COMPONENT ${SELECTED_COMPONENT} CACHE STRING "Selected crackingCodingInterviews component" FORCE)
-        add_subdirectory(dataStructures)
-    else()
-        # Set project-specific component variables for single project builds
-        if(SELECTED_PROJECT STREQUAL "dataStructures")
-            set(DATASTRUCTURES_SELECTED_COMPONENT ${SELECTED_COMPONENT} CACHE STRING "Selected dataStructures component" FORCE)
-        elseif(SELECTED_PROJECT STREQUAL "crackingCodingInterviews")
-            set(CRACKINGCODINGINTERVIEWS_SELECTED_COMPONENT ${SELECTED_COMPONENT} CACHE STRING "Selected crackingCodingInterviews component" FORCE)
+        if (SELECTED_COMPONENT STREQUAL "chapter2")
+            set(DATASTRUCTURES_SELECTED_COMPONENT "linkedList" CACHE STRING "Selected dataStructures component for chapter2" FORCE)
+            add_subdirectory(dataStructures)
+        elseif(SELECTED_COMPONENT STREQUAL "chapter3")
+            set(DATASTRUCTURES_SELECTED_COMPONENT "stack" CACHE STRING "Selected dataStructures component for chapter3" FORCE)
+            add_subdirectory(dataStructures)
+        elseif(SELECTED_COMPONENT STREQUAL "")
+            set(DATASTRUCTURES_SELECTED_COMPONENT "linkedList;stack" CACHE STRING "Selected dataStructures components for default chapter2" FORCE)
+            add_subdirectory(dataStructures)
         endif()
     endif()
     
