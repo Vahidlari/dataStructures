@@ -83,7 +83,7 @@
       "id": "codingProblemsComponent",
       "type": "pickString",
       "description": "Select codingProblems component",
-      "options": ["chapter1", "chapter2"],
+      "options": ["chapter1", "chapter2", "chapter3"],
       "default": "chapter1"
     },
     {
