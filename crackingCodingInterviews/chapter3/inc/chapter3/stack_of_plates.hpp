@@ -21,15 +21,18 @@
  * @brief Implementation of the SetOfStacks data structure
  * @note The implementation is based on the CFlexibleMultiStack class.
  * @note The implementation allows for a single stack to be externally created, however, the internal stacks are created automatically.
+ * The solution could be implemented by instantiating multiple objects of CFlexibleMultiStack<int>, each creating a single stack, and managing them in a similiar way. 
+ * However, to keep the implementation simple and efficient, we use a single CFlexibleMultiStack<int> instance to manage multiple stacks internally.
  */
 class CStackOfPlates: public dataStructures::CFlexibleMultiStack<int>
 {
 public:
-    using size_t = dataStructures::CFlexibleMultiStack<int>::size_t; ///< Type alias for size_t
-    using data_t = dataStructures::CFlexibleMultiStack<int>::data_t; ///< Type alias for the data type
+    using stack_t = dataStructures::CFlexibleMultiStack<int>; ///< Type alias for the base stack type
+    using size_t  = stack_t::size_t; ///< Type alias for size_t
+    using data_t  = stack_t::data_t; ///< Type alias for the data type
 
-    CStackOfPlates(size_t overalCapacity = dataStructures::CFlexibleMultiStack<int>::defaultCapacity)
-        : dataStructures::CFlexibleMultiStack<int>(overalCapacity, overalCapacity/dataStructures::CFlexibleMultiStack<int>::) {
+    CStackOfPlates(size_t overalCapacity = stack_t::defaultCapacity)
+        : stack_t(overalCapacity, std::ceil(overalCapacity/stack_t::TStackMetadata::stackInitialCapacity)) {
             // Initialize the stacks
         }
 
@@ -76,6 +79,8 @@ public:
 
 
 private: 
+    constexpr static size_t stackTrackingStackID = 0; ///< ID of the stack used to track the created stacks as stackOfPlates
+    constexpr static size_t firstStackID = 1; ///< ID of the first stack created to store the actual data
     using dataStructures::CFlexibleMultiStack<int>::createStack;
     using dataStructures::CFlexibleMultiStack<int>::deleteStack;
     using dataStructures::CFlexibleMultiStack<int>::push;
