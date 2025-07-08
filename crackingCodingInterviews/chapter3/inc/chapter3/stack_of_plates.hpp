@@ -76,13 +76,13 @@ public:
 private: 
     constexpr static size_t stackTrackingStackID = 0; ///< ID of the stack used to track the created stacks as stackOfPlates
     constexpr static size_t firstStackID = 1; ///< ID of the first stack created to store the actual data
-    using dataStructures::CFlexibleMultiStack<int>::createStack;
-    using dataStructures::CFlexibleMultiStack<int>::deleteStack;
-    using dataStructures::CFlexibleMultiStack<int>::push;
-    using dataStructures::CFlexibleMultiStack<int>::pop;
-    using dataStructures::CFlexibleMultiStack<int>::peek;
-    using dataStructures::CFlexibleMultiStack<int>::isEmpty;
-    using dataStructures::CFlexibleMultiStack<int>::getStackSize;
+    using stack_t::createStack;
+    using stack_t::deleteStack;
+    using stack_t::push;
+    using stack_t::pop;
+    using stack_t::peek;
+    using stack_t::isEmpty;
+    using stack_t::getStackSize;
 
 
 };
