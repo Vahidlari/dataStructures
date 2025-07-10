@@ -22,6 +22,8 @@ class CBinaryHeap : public CBaseDataType<std::vector<Ttype>>
 public:
     //using CBaseDataType::swap; //(std::vector<Ttype> a, int srcIdx, int dstIdx);
     //using CBaseDataType::print; //(std::vector<Ttype> a a);
+    using index_t = typename CBaseDataType<std::vector<Ttype>>::index_t;
+
     /**
      * @brief Default constructor
      */
@@ -50,7 +52,7 @@ protected:
      * @param[in] idx Index of the element to move up
      * @note Time complexity: O(log n)
      */
-    void swim(int idx);
+    void swim(index_t idx);
 
     /**
      * @brief Moves an element down the heap to maintain the heap property
@@ -58,7 +60,7 @@ protected:
      * @param[in] idx Index of the element to move down
      * @note Time complexity: O(log n)
      */
-    void sink(int idx);
+    void sink(index_t idx);
 
     std::vector<Ttype> heapArray;
 };

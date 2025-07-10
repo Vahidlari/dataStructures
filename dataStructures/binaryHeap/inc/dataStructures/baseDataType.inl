@@ -5,7 +5,7 @@ namespace dataStructures
 {
 template<typename Ttype>
 inline 
-void CBaseDataType<Ttype>::swap(Ttype& a, int srcIdx, int dstIdx){
+void CBaseDataType<Ttype>::swap(Ttype& a, index_t srcIdx, index_t dstIdx){
 #ifdef PRINT_ENABLED2
     std::cout << "Swapping " << a[srcIdx] << " with " << a[dstIdx] << ": ";
 #endif

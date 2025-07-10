@@ -13,11 +13,6 @@ target_include_directories(binaryHeap
         $<INSTALL_INTERFACE:inc>
 )
 
-target_link_libraries(binaryHeap
-    INTERFACE
-        dataStructures::baseDataType
-)
-
 # Add tests
 if(BUILD_DATASTRUCTURES_TESTING)
     add_subdirectory(test)

@@ -27,12 +27,12 @@ void CBinaryHeap<Ttype>::insert(Ttype a){
 
 template <typename Ttype>
 inline 
-void CBinaryHeap<Ttype>::swim(int idx){
+void CBinaryHeap<Ttype>::swim(index_t idx){
 #ifdef PRINT_ENABLED
     std::cout << "Swim index " << idx << " on the content: ";
     this->print(heapArray);
 #endif
-    int k = idx;
+    index_t k = idx;
     Ttype key = heapArray[idx];
     while(k > 0)
     {
@@ -53,14 +53,14 @@ void CBinaryHeap<Ttype>::swim(int idx){
 
 template <typename Ttype>
 inline 
-void CBinaryHeap<Ttype>::sink(int idx){
+void CBinaryHeap<Ttype>::sink(index_t idx){
 #ifdef PRINT_ENABLED
     std::cout << "Sink index " << idx << " on the content: ";
     this->print(heapArray);
 #endif
-    int k = idx;
+    index_t k = idx;
     Ttype key = heapArray[idx];
-    int j = 0;
+    index_t j = 0;
     while(static_cast<size_t>(2*k+1) < heapArray.size())
     {
         j = 2*k + 1;

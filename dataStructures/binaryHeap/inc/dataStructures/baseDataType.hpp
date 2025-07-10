@@ -15,6 +15,7 @@ template <typename Ttype>
 class CBaseDataType
 {
 public:
+    using index_t = std::size_t;
     /**
      * @brief Swaps two elements in a container
      * 
@@ -24,7 +25,7 @@ public:
      * 
      * @note The container must support operator[] for access and modification
      */
-    static void swap(Ttype& a, int srcIdx, int dstIdx);
+    static void swap(Ttype& a, index_t srcIdx, index_t dstIdx);
 
     /**
      * @brief Prints all elements in the container
